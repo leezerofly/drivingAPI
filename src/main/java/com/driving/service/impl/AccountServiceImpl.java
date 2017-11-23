@@ -18,13 +18,30 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountDao accountDao;
 
+    /**
+     * 查询所有Account
+     * @return
+     */
     @Override
     public List<Account> findAllAccount() {
         return accountDao.findAllAccount();
     }
 
+    /**
+     * 添加Account
+     * @param account
+     */
     @Override
     public void insertAccount(Account account) {
         accountDao.insertAccount(account);
     }
+
+    /**
+     * 删除deleteAccountById
+     * @param id
+     */
+    /*@Override
+    public void deleteAccountById(String id) {
+        accountDao.deleteAccountById(id);
+    }*/
 }

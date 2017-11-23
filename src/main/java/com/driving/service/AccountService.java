@@ -10,6 +10,22 @@ import java.util.List;
  */
 public interface AccountService {
 
+    /**
+     * 查询所有Account
+     * @return
+     */
     List<Account> findAllAccount();
+
+    /**
+     * 添加Account
+     * @param account
+     */
     void insertAccount(Account account);
+
+    /**
+     * 删除Account
+     * @param id
+     * @return
+     */
+    /*void deleteAccountById(String id);*/
 }

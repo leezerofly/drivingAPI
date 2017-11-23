@@ -11,10 +11,13 @@
     user_id, user_name, password, phone
   </sql>
   -->
+
+ <!-- 查询Account-->
   <select id="findAllAccount" resultType="com.driving.model.Account">
     SELECT  id,phone,wx_account,login_password FROM account
   </select>
 
+  <!--添加Account，自动生成id-->
   <insert id="insertAccount" parameterType="com.driving.model.Account" >
     <selectKey keyProperty="id" resultType="java.lang.String"
                order="BEFORE">
@@ -26,5 +29,13 @@
     VALUES
     ( #{id},#{phone}, #{wx_account},#{login_password})
   </insert>
+
+  <!--根据id删除Account-->
+  <!--<delete id="deleteAccountById" parameterType="int">
+    delete from
+    account
+    where id
+    = #{id}
+  </delete>-->
 
 </mapper>

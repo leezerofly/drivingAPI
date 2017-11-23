@@ -3,6 +3,7 @@ package com.driving.controller;
 import com.driving.model.Account;
 import com.driving.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,29 +19,34 @@ public class AccountController {
 
     @Autowired
     private AccountService accountService;
-//
-//    @RequestMapping("/hello")
-//    public String say(){
-//        return "Hello SpringBoot!";
-//    }
 
+    /**
+     * 查询所有Account
+     * @return
+     */
     @RequestMapping(value="/getAllAccount",method= RequestMethod.GET)
     public List<Account> getAllAccount(){
         List<Account> accountList = accountService.findAllAccount();
         return accountList;
     }
 
+    /**
+     * 添加Account
+     * @param account
+     */
     @RequestMapping("/insertAccount")
-    public void save(Account account) {
+    public void insertAccount(Account account) {
         accountService.insertAccount(account);
     }
 
-    /*@RequestMapping(value={"/addAccount"}, method=RequestMethod.POST)
-    public void addUser(Account account){
-        accountDao.addUser(account);
-    }*/
-    /*public List<Account> getHeroList(){
-        List<Account> accountList = accountService.findAllUser();
-        return accountList;
+    /**
+     * 根据id删除Account
+     * @param id
+     * @return
+     */
+    /*@RequestMapping(value = "/deleteAccountById/{id}")
+    public boolean deleteAccountById(@PathVariable("id") String id){
+        accountService.deleteAccountById(id);
+        return true;
     }*/
 }

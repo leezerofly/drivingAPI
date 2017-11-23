@@ -21,4 +21,11 @@ public interface AccountDao {
      * @param account
      */
     void insertAccount(Account account);
+
+    /**
+     * 删除deleteAccount
+     * @param id
+     * @return
+     */
+    /*void deleteAccountById(String id);*/
 }
