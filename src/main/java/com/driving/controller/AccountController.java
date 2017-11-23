@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * created by wk on 2017-11-23
+ * account的Controller
+ */
 @RestController
 public class AccountController {
 

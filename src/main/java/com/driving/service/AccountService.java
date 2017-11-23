@@ -5,7 +5,8 @@ import com.driving.model.Account;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/8/16.
+ * Created by wk on 2017-11-23
+ * account的service的接口
  */
 public interface AccountService {
 

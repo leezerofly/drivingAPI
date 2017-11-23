@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/8/16.
+ * Created by wk on 2017-11-23
+ * account的service层的实现
  */
-@Service(value = "accountService")
+@Service
 public class AccountServiceImpl implements AccountService {
 
     @Autowired

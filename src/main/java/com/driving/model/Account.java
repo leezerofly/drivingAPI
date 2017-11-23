@@ -1,5 +1,9 @@
 package com.driving.model;
 
+/**
+ * created by wk on 2017-11-23
+ * account实体类
+ */
 public class Account {
 
     private Integer id;
