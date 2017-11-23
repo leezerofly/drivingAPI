@@ -1,12 +1,13 @@
 package com.driving.model;
 
+
 /**
  * created by wk on 2017-11-23
  * account实体类
  */
 public class Account {
 
-    private Integer id;
+    private String id;
     private String phone;
     private String wx_account;
     private String login_password;
@@ -15,7 +16,7 @@ public class Account {
         super();
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -31,7 +32,7 @@ public class Account {
         this.login_password = login_password;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 

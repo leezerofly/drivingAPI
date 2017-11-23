@@ -18,7 +18,6 @@ public class AccountController {
 
     @Autowired
     private AccountService accountService;
-//    private AccountDao accountDao;
 //
 //    @RequestMapping("/hello")
 //    public String say(){
@@ -27,11 +26,11 @@ public class AccountController {
 
     @RequestMapping(value="/getAllAccount",method= RequestMethod.GET)
     public List<Account> getAllAccount(){
-        List<Account> accountList = accountService.findAll();
+        List<Account> accountList = accountService.findAllAccount();
         return accountList;
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/insertAccount")
     public void save(Account account) {
         accountService.insertAccount(account);
     }

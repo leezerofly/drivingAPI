@@ -14,7 +14,7 @@ public interface AccountDao {
      * 查询所有account
      * @return
      */
-    List<Account> findAll();
+    List<Account> findAllAccount();
 
     /**
      * 添加account
