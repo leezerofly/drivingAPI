@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.driving.dao.AccountDao" >
+  <resultMap id="BaseResultMap" type="com.driving.model.Account" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="wx_account" property="wx_account" jdbcType="VARCHAR" />
+    <result column="login_password" property="login_password" jdbcType="VARCHAR" />
+  </resultMap>
+  <!--<sql id="Base_Column_List" >
+    user_id, user_name, password, phone
+  </sql>
+  -->
+  <select id="findAll" resultType="com.driving.model.Account">
+      SELECT  id,phone,wx_account,login_password FROM  account
+  </select>
+
+  <insert id="insertAccount" parameterType="com.driving.model.Account" >
+    INSERT INTO
+    account
+    (id,phone,wx_account,login_password)
+    VALUES
+    (#{id}, #{phone}, #{wx_account},#{login_password})
+  </insert>
+
+</mapper>
