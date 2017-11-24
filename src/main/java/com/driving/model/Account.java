@@ -1,5 +1,6 @@
 package com.driving.model;
 
+import java.util.UUID;
 
 /**
  * created by wk on 2017-11-23

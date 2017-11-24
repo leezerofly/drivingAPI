@@ -23,9 +23,15 @@ public interface AccountDao {
     void insertAccount(Account account);
 
     /**
-     * 删除deleteAccount
+     * 删除account
      * @param id
      * @return
      */
-    /*void deleteAccountById(String id);*/
+    void deleteAccountById(String id);
+
+    /**
+     * 修改account
+     * @param account
+     */
+    void updateAccount(Account account);
 }

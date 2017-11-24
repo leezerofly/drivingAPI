@@ -40,8 +40,13 @@ public class AccountServiceImpl implements AccountService {
      * 删除deleteAccountById
      * @param id
      */
-    /*@Override
+    @Override
     public void deleteAccountById(String id) {
         accountDao.deleteAccountById(id);
-    }*/
+    }
+
+    @Override
+    public void updateUser(Account account) {
+        accountDao.updateAccount(account);
+    }
 }

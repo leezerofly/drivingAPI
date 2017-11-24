@@ -27,5 +27,7 @@ public interface AccountService {
      * @param id
      * @return
      */
-    /*void deleteAccountById(String id);*/
+    void deleteAccountById(String id);
+
+    void updateUser(Account account);
 }
