@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>T-JSON数据接口说明</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:\Users\Administrator\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.3.0\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="&#x8D85;&#x9F99;api&#x63A5;&#x53E3;&#x6587;&#x6863;">超龙API接口文档</h1>
+
+<p><strong>备注：采用restful设计风格，除账号模块外，其他模块的接口使用都需要使用token验证。</strong><br>
+示例：<code>http://localhost:8081/drivingAPI/user?tocken=qwes321asfqedsada43</code></p>
+<h2 class="mume-header" id="1-&#x8D26;&#x53F7;&#x6A21;&#x5757;">1、账号模块</h2>
+
+<h3 class="mume-header" id="11-&#x767B;&#x5F55;">1.1、登录</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;">方法</h4>
+
+<p><code>POST</code> <code>http://localhost:8081/drivingAPI/login</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;">功能</h4>
+
+<p>用户通过账号进行登录。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;">表单参数</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示例</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">phone</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">账号（手机号）</td>
+<td style="text-align:left">&quot;17197929204&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">密码</td>
+<td style="text-align:left">&quot;jovan123&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;message&quot;:&quot;&#x63D0;&#x4EA4;&#x6210;&#x529F;&quot;,
+    &quot;data&quot;:{
+        &quot;user_id&quot;:&quot;asdasd-fasfasf-asfdasdas&quot;,
+        &quot;username&quot;:&quot;&#x806A;&#x806A;&quot;,
+        &quot;image&quot;:&quot;http://localhost:8081/image/heading.jpg&quot;,
+        &quot;district&quot;:&quot;&#x7EA2;&#x8C37;&#x6EE9;&#x65B0;&#x533A;&quot;,
+        &quot;tocken&quot;:&quot;qwes321asfqedsada43&quot;
+    }
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">message</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">错误消息</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">user_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户昵称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">image</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户头像</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">district</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户地区</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">tocken</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户有效凭证</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h3 class="mume-header" id="12-&#x6CE8;&#x518C;">1.2、注册</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-1">方法</h4>
+
+<p><code>POST</code> <code>http://localhost:8081/drivingAPI/register</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-1">功能</h4>
+
+<p>用户注册。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-1">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-1">表单参数</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示例</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">phone</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">账号</td>
+<td style="text-align:left">&quot;17197929204&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">昵称</td>
+<td style="text-align:left">&quot;聪聪&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">密码</td>
+<td style="text-align:left">&quot;jovan123&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-1">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;message&quot;:&quot;&#x63D0;&#x4EA4;&#x6210;&#x529F;&quot;,
+    &quot;data&quot;:{
+        &quot;user_id&quot;:&quot;asdasd-fasfasf-asfdasdas&quot;,
+        &quot;username&quot;:&quot;&#x806A;&#x806A;&quot;,
+        &quot;image&quot;:&quot;http://localhost:8081/image/heading.jpg&quot;,
+        &quot;district&quot;:&quot;&#x7EA2;&#x8C37;&#x6EE9;&#x65B0;&#x533A;&quot;,
+        &quot;tocken&quot;:&quot;qwes321asfqedsada43&quot;
+    }
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-1">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">message</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">错误消息</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">user_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户昵称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">image</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户头像</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">district</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户地区</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">tocken</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户有效凭证</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-1">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h3 class="mume-header" id="13-&#x627E;&#x56DE;&#x5BC6;&#x7801;">1.3、找回密码</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-2">方法</h4>
+
+<p><code>PUT</code> <code>http://localhost:8081/drivingAPI/password</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-2">功能</h4>
+
+<p>找回已知账号的密码。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-2">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-2">表单参数</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示例</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">phone</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">账号</td>
+<td style="text-align:left">&quot;17197929204&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">new_password</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">新密码</td>
+<td style="text-align:left">&quot;bell666&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-2">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;message&quot;:&quot;&#x63D0;&#x4EA4;&#x6210;&#x529F;&quot;
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-2">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">message</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">错误消息</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-2">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h2 class="mume-header" id="2-&#x7528;&#x6237;&#x6A21;&#x5757;">2、用户模块</h2>
+
+<h3 class="mume-header" id="21-&#x83B7;&#x53D6;&#x7528;&#x6237;&#x4FE1;&#x606F;">2.1、获取用户信息</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-3">方法</h4>
+
+<p><code>GET</code> <code>http://localhost:8081/drivingAPI/user</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-3">功能</h4>
+
+<p>获取当前登录的用户信息。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-3">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-3">表单参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-3">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:1,
+    &quot;data&quot;:{
+        &quot;user_id&quot;:&quot;asdasd-fasfasf-asfdasdas&quot;,
+        &quot;username&quot;:&quot;&#x806A;&#x806A;&quot;,
+        &quot;image&quot;:&quot;http://localhost:8081/image/heading.jpg&quot;,
+        &quot;district&quot;:&quot;&#x7EA2;&#x8C37;&#x6EE9;&#x65B0;&#x533A;&quot;
+    }
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-3">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">user_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户昵称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">image</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户头像</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">district</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户地区</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-3">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h3 class="mume-header" id="22-&#x66F4;&#x65B0;&#x7528;&#x6237;&#x4FE1;&#x606F;">2.2、更新用户信息</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-4">方法</h4>
+
+<p><code>PUT</code> <code>http://localhost:8081/drivingAPI/user</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-4">功能</h4>
+
+<p>更新用户信息。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-4">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-4">表单参数</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示例</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">昵称</td>
+<td style="text-align:left">&quot;聪聪&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">image</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">头像</td>
+<td style="text-align:left">&quot;<a href="http://localhost:8081/image/heading.jpg">http://localhost:8081/image/heading.jpg</a>&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">district</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">所在地区</td>
+<td style="text-align:left">&quot;青山湖区&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-4">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;message&quot;:&quot;&#x63D0;&#x4EA4;&#x6210;&#x529F;&quot;
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-4">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">message</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">错误消息</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-4">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h2 class="mume-header" id="3-&#x73ED;&#x578B;&#x6A21;&#x5757;">3、班型模块</h2>
+
+<h3 class="mume-header" id="31-&#x73ED;&#x578B;&#x7B80;&#x4ECB;&#x5217;&#x8868;">3.1、班型简介列表</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-5">方法</h4>
+
+<p><code>GET</code> <code>http://localhost:8081/drivingAPI/class/list</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-5">功能</h4>
+
+<p>获取班型的列表。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-5">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-5">表单参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-5">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:2,
+    &quot;data&quot;:[{
+        &quot;class_id&quot;:&quot;asdasd-fasfasf-asfdasdas&quot;,
+        &quot;class_name&quot;:&quot;&#x7ECF;&#x5178;&#x8BAD;&#x7EC3;&#x73ED;&quot;,
+        &quot;minimum&quot;:2100.00
+    },{
+        &quot;class_name_id&quot;:&quot;asdafdd-fasfasf-sfdasdas&quot;,
+        &quot;class_name&quot;:&quot;&#x5927;&#x4F17;&#x8BAD;&#x7EC3;&#x73ED;&quot;,
+        &quot;minimum&quot;:2000.00
+    }]
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-5">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">class_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">minimum</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">班型最低价</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-5">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h3 class="mume-header" id="32-&#x73ED;&#x578B;&#x8BE6;&#x60C5;">3.2、班型详情</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-6">方法</h4>
+
+<p><code>GET</code> <code>http://localhost:8081/drivingAPI/class/detail</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-6">功能</h4>
+
+<p>根据不同班型获取班型详细信息。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-6">url参数</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示例</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">class_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">班型id</td>
+<td style="text-align:left">&quot;asdasd-fasfasf-asfdasdas&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-6">表单参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-6">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:2,
+    &quot;data&quot;:[{
+        &quot;class_id&quot;:&quot;asdasd-fasfasf-asfdasdas&quot;,
+        &quot;class_name&quot;:&quot;&#x7ECF;&#x5178;&#x8BAD;&#x7EC3;&#x73ED;&quot;
+        &quot;class_type&quot;:&quot;B1&quot;,
+        &quot;price&quot;:2100.00,
+        &quot;service_list&quot;:&quot;&#x79D1;&#x76EE;&#x4E8C;&#x573A;&#x8BAD;&#x65F6;1-4&#x4EBA;/&#x8F66;&#xFF0C;&#x6700;&#x5C11;1&#x4EBA;&#xFF0C;&#x6700;&#x591A;4&#x4EBA;#&#x4E09;&#x661F;&#x7EA7;&#x8BA4;&#x8BC1;&#x6559;&#x7EC3;&#xFF0C;&#x9AD8;&#x54C1;&#x8D28;&#x6559;&#x5B66;&#x670D;&#x52A1;#&#x5C31;&#x8FD1;&#x5B66;&#x8F66;&#xFF0C;&#x4E3B;&#x57CE;&#x4E5D;&#x533A;120+&#x573A;&#x5730;&#x4EFB;&#x4F60;&#x9009;#&#x4E13;&#x5C5E;&#x5B66;&#x8F66;&#x987E;&#x95EE;&#x5168;&#x7A0B;&#x8DDF;&#x8FDB;&#xFF0C;&#x6709;&#x95EE;&#x5FC5;&#x7B54;&#xFF0C;&#x968F;&#x65F6;&#x5F85;&#x547D;&quot;,
+        &quot;cost_list&quot;:&quot;&#x5305;&#x542B;&#x8D39;&#x7528;@&#x57F9;&#x8BAD;&#x8D39;&#x7531;&#x597D;&#x68A6;&#x6258;&#x7BA1;&#xFF0C;&#x5305;&#x542B;&#x5165;&#x7C4D;&#x8D39;&#x3001;&#x57F9;&#x8BAD;&#x8D39;&#x3001;&#x5408;&#x540C;&#x3001;IC&#x5361;&#x3001;&#x7ED3;&#x4E1A;&#x8BC1;&#x8D39;&#x3001;&#x4FDD;&#x9669;&#x3001;&#x7A0E;&#x91D1;&#x3001;&#x7EA2;&#x5341;&#x5B57;&#x4F1A;&#x8D39;.#&#x8003;&#x8BD5;&#x8D39;@&#x5305;&#x542B;&#x79D1;&#x76EE;&#x4E00;50&#x5143;&#x3001;&#x79D1;&#x76EE;&#x4E8C;160&#x5143;&#x3001;&#x79D1;&#x76EE;&#x4E09;180&#x5143;#&#x8003;&#x8BD5;&#x6A21;&#x62DF;&#x8D39;&#xFF08;&#x53EF;&#x9009;&#xFF09;@&#x79D1;&#x76EE;&#x4E8C;320&#x5143;/&#x5C0F;&#x65F6;&#x3001;320&#x5143;/&#x5C0F;&#x65F6;#&#x9A7E;&#x7167;&#x90AE;&#x5BC4;&#x8D39;@&#x7EA6;22&#x5143;/&#x4EBA;&quot;
+    },{
+        &quot;class_id&quot;:&quot;bsaasd-fasfasf-asfdasdas&quot;,
+        &quot;class_name&quot;:&quot;&#x7ECF;&#x5178;&#x8BAD;&#x7EC3;&#x73ED;&quot;
+        &quot;class_type&quot;:&quot;B2&quot;,
+        &quot;price&quot;:3100.00,
+        &quot;service_list&quot;:&quot;&#x79D1;&#x76EE;&#x4E8C;&#x573A;&#x8BAD;&#x65F6;1-4&#x4EBA;/&#x8F66;&#xFF0C;&#x6700;&#x5C11;1&#x4EBA;&#xFF0C;&#x6700;&#x591A;4&#x4EBA;#&#x4E09;&#x661F;&#x7EA7;&#x8BA4;&#x8BC1;&#x6559;&#x7EC3;&#xFF0C;&#x9AD8;&#x54C1;&#x8D28;&#x6559;&#x5B66;&#x670D;&#x52A1;#&#x5C31;&#x8FD1;&#x5B66;&#x8F66;&#xFF0C;&#x4E3B;&#x57CE;&#x4E5D;&#x533A;120+&#x573A;&#x5730;&#x4EFB;&#x4F60;&#x9009;#&#x4E13;&#x5C5E;&#x5B66;&#x8F66;&#x987E;&#x95EE;&#x5168;&#x7A0B;&#x8DDF;&#x8FDB;&#xFF0C;&#x6709;&#x95EE;&#x5FC5;&#x7B54;&#xFF0C;&#x968F;&#x65F6;&#x5F85;&#x547D;&quot;,
+        &quot;cost_list&quot;:&quot;&#x5305;&#x542B;&#x8D39;&#x7528;@&#x57F9;&#x8BAD;&#x8D39;&#x7531;&#x597D;&#x68A6;&#x6258;&#x7BA1;&#xFF0C;&#x5305;&#x542B;&#x5165;&#x7C4D;&#x8D39;&#x3001;&#x57F9;&#x8BAD;&#x8D39;&#x3001;&#x5408;&#x540C;&#x3001;IC&#x5361;&#x3001;&#x7ED3;&#x4E1A;&#x8BC1;&#x8D39;&#x3001;&#x4FDD;&#x9669;&#x3001;&#x7A0E;&#x91D1;&#x3001;&#x7EA2;&#x5341;&#x5B57;&#x4F1A;&#x8D39;.#&#x8003;&#x8BD5;&#x8D39;@&#x5305;&#x542B;&#x79D1;&#x76EE;&#x4E00;50&#x5143;&#x3001;&#x79D1;&#x76EE;&#x4E8C;160&#x5143;&#x3001;&#x79D1;&#x76EE;&#x4E09;180&#x5143;#&#x8003;&#x8BD5;&#x6A21;&#x62DF;&#x8D39;&#xFF08;&#x53EF;&#x9009;&#xFF09;@&#x79D1;&#x76EE;&#x4E8C;320&#x5143;/&#x5C0F;&#x65F6;&#x3001;320&#x5143;/&#x5C0F;&#x65F6;#&#x9A7E;&#x7167;&#x90AE;&#x5BC4;&#x8D39;@&#x7EA6;22&#x5143;/&#x4EBA;&quot;
+    }]
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-6">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">class_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_type</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型类别</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">price</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">价格</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">service_list</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">服务条款</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">cost_list</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">费用明细</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-6">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h2 class="mume-header" id="4-&#x573A;&#x5730;&#x6A21;&#x5757;">4、场地模块</h2>
+
+<h3 class="mume-header" id="41-&#x573A;&#x5730;&#x5217;&#x8868;">4.1、场地列表</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-7">方法</h4>
+
+<p><code>GET</code> <code>http://localhost:8081/drivingAPI/ground/list</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-7">功能</h4>
+
+<p>根据不同班型获取班型详细信息。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-7">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-7">表单参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-7">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:2,
+    &quot;data&quot;:[{
+        &quot;ground_id&quot;:&quot;gsdasd-fasfasf-asfdasdas&quot;,
+        &quot;ground_name&quot;:&quot;&#x9752;&#x5C71;&#x6E56;&#x533A;&#x8BAD;&#x7EC3;&#x573A;&quot;
+        &quot;ground_addr&quot;:&quot;&#x9752;&#x5C71;&#x6E56;&#x533A;&#x9633;&#x57CE;&#x8DEF;899&#x53F7;&quot;,
+        &quot;longitude&quot;:&quot;30.2131312&quot;,
+        &quot;latitude&quot;:&quot;11.2131112&quot;
+    },{
+        &quot;ground_id&quot;:&quot;gadasd-fasfasf-asfdasdas&quot;,
+        &quot;ground_name&quot;:&quot;&#x7EA2;&#x8C37;&#x6EE9;&#x65B0;&#x533A;&#x8BAD;&#x7EC3;&#x573A;&quot;
+        &quot;ground_addr&quot;:&quot;&#x7EA2;&#x8C37;&#x6EE9;&#x65B0;&#x533A;&#x5B66;&#x5E9C;&#x5927;&#x9053;829&#x53F7;&quot;,
+        &quot;longitude&quot;:&quot;32.2131312&quot;,
+        &quot;latitude&quot;:&quot;10.2131112&quot;
+    }]
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-7">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">ground_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">场地id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">ground_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">场地名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">ground_addr</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">场地类别</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">longitude</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">经度</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">latitude</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">纬度</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-7">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h2 class="mume-header" id="5-&#x6559;&#x7EC3;&#x6A21;&#x5757;">5、教练模块</h2>
+
+<h3 class="mume-header" id="51-&#x6559;&#x7EC3;&#x5217;&#x8868;">5.1、教练列表</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-8">方法</h4>
+
+<p><code>GET</code> <code>http://localhost:8081/drivingAPI/coach/list</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-8">功能</h4>
+
+<p>获取教练列表。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-8">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-8">表单参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-8">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:2,
+    &quot;data&quot;:[{
+        &quot;coach_id&quot;:&quot;csdasd-fasfasf-asfdasdas&quot;,
+        &quot;coach_name&quot;:&quot;&#x9648;&#x6559;&#x7EC3;&quot;
+        &quot;coach_img&quot;:&quot;http://localhost:8081/image/heading.jpg&quot;,
+        &quot;intro&quot;:&quot;&#x4E00;&#x540D;&#x4F18;&#x79C0;&#x7684;&#x6559;&#x7EC3;&#xFF01;&quot;,
+        &quot;rank&quot;:4
+    },{
+        &quot;coach_id&quot;:&quot;cadasd-fasfasf-asfdasdas&quot;,
+        &quot;coach_name&quot;:&quot;&#x5218;&#x6559;&#x7EC3;&quot;
+        &quot;coach_img&quot;:&quot;http://localhost:8081/image/heading2.jpg&quot;,
+        &quot;intro&quot;:&quot;&#x70ED;&#x60C5;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x7EC6;&#x81F4;&#x7684;&#x6559;&#x5B66;&#xFF01;&quot;,
+        &quot;rank&quot;:5
+    }]
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-8">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">coach_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">教练id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">coach_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">教练名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">coach_img</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">教练头像</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">intro</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">简介</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">rank</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">星级</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-8">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h2 class="mume-header" id="6-&#x8BA2;&#x5355;&#x6A21;&#x5757;">6、订单模块</h2>
+
+<h3 class="mume-header" id="61-&#x521B;&#x5EFA;&#x8BA2;&#x5355;">6.1、创建订单</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-9">方法</h4>
+
+<p><code>POST</code> <code>http://localhost:8081/drivingAPI/order/create</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-9">功能</h4>
+
+<p>立即报名，创建订单。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-9">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-9">表单参数</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示例</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">user_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">用户id</td>
+<td style="text-align:left">&quot;uadasd-fasfasf-asfdasdas&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">班型id</td>
+<td style="text-align:left">&quot;cadasd-fasfasf-asfdasdas&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">ground_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">场地id</td>
+<td style="text-align:left">&quot;gadasd-fasfasf-asfdasdas&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">pay</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">此次支付的金额</td>
+<td style="text-align:left">1200.00</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-9">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:1,
+    &quot;data&quot;:{
+        &quot;order_id&quot;:&quot;osdasd-fasfasf-asfdasdas&quot;,
+        &quot;class_name&quot;:&quot;&#x7ECF;&#x5178;&#x57F9;&#x8BAD;&#x73ED;&quot;,
+        &quot;class_type&quot;:&quot;B2&quot;,
+        &quot;ground_name&quot;:&quot;&#x9752;&#x5C71;&#x6E56;&#x8BAD;&#x7EC3;&#x573A;&quot;,
+        &quot;status&quot;:1,
+        &quot;price&quot;:2100.00,
+        &quot;paid&quot;:1200.00
+    }
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-9">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">order_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">订单id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_type</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型类别</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">ground_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">场地名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">订单状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">price</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">总价</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">paid</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">已支付的金额</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-9">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h3 class="mume-header" id="52-&#x7EE7;&#x7EED;&#x652F;&#x4ED8;">5.2、继续支付</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-10">方法</h4>
+
+<p><code>PUT</code> <code>http://localhost:8081/drivingAPI/order/pay</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-10">功能</h4>
+
+<p>支付尚未完成的部分</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-10">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-10">表单参数</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示例</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">order_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">订单id</td>
+<td style="text-align:left">&quot;uadasd-fasfasf-asfdasdas&quot;</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">pay</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">此次支付的金额</td>
+<td style="text-align:left">900.00</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-10">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:1,
+    &quot;data&quot;:{
+        &quot;order_id&quot;:&quot;osdasd-fasfasf-asfdasdas&quot;,
+        &quot;class_name&quot;:&quot;&#x7ECF;&#x5178;&#x57F9;&#x8BAD;&#x73ED;&quot;,
+        &quot;class_type&quot;:&quot;B2&quot;,
+        &quot;ground_name&quot;:&quot;&#x9752;&#x5C71;&#x6E56;&#x8BAD;&#x7EC3;&#x573A;&quot;,
+        &quot;status&quot;:2,
+        &quot;price&quot;:2100.00,
+        &quot;paid&quot;:2100.00
+    }
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-10">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">order_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">订单id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_type</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型类别</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">ground_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">场地名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">订单状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">price</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">总价</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">paid</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">已支付的金额</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-10">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h3 class="mume-header" id="53-&#x83B7;&#x53D6;&#x8BA2;&#x5355;">5.3、获取订单</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-11">方法</h4>
+
+<p><code>GET</code> <code>http://localhost:8081/drivingAPI/order</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-11">功能</h4>
+
+<p>获取当前登录用户的订单。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-11">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-11">表单参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-11">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:1,
+    &quot;data&quot;:{
+        &quot;order_id&quot;:&quot;osdasd-fasfasf-asfdasdas&quot;,
+        &quot;class_name&quot;:&quot;&#x7ECF;&#x5178;&#x57F9;&#x8BAD;&#x73ED;&quot;,
+        &quot;class_type&quot;:&quot;B2&quot;,
+        &quot;ground_name&quot;:&quot;&#x9752;&#x5C71;&#x6E56;&#x8BAD;&#x7EC3;&#x573A;&quot;,
+        &quot;status&quot;:1,
+        &quot;price&quot;:2100.00,
+        &quot;paid&quot;:1200.00
+    }
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-11">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">order_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">订单id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_type</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型类别</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">ground_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">场地名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">订单状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">price</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">总价</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">paid</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">已支付的金额</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-11">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+<h3 class="mume-header" id="54-&#x53D6;&#x6D88;&#x8BA2;&#x5355;">5.4、取消订单</h3>
+
+<h4 class="mume-header" id="&#x65B9;&#x6CD5;-12">方法</h4>
+
+<p><code>DELETE</code> <code>http://localhost:8081/drivingAPI/order</code></p>
+<h4 class="mume-header" id="&#x529F;&#x80FD;-12">功能</h4>
+
+<p>取消当前登录用户的订单。</p>
+<h4 class="mume-header" id="url&#x53C2;&#x6570;-12">url参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8868;&#x5355;&#x53C2;&#x6570;-12">表单参数</h4>
+
+<p>无</p>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x7ED3;&#x679C;-12">返回结果</h4>
+
+<pre class="language-">{
+    &quot;code&quot;:200,
+    &quot;status&quot;:&quot;success&quot;,
+    &quot;count&quot;:1,
+    &quot;data&quot;:{
+        &quot;order_id&quot;:&quot;osdasd-fasfasf-asfdasdas&quot;,
+        &quot;class_name&quot;:&quot;&#x7ECF;&#x5178;&#x57F9;&#x8BAD;&#x73ED;&quot;,
+        &quot;class_type&quot;:&quot;B2&quot;,
+        &quot;ground_name&quot;:&quot;&#x9752;&#x5C71;&#x6E56;&#x8BAD;&#x7EC3;&#x573A;&quot;,
+        &quot;status&quot;:-1,
+        &quot;price&quot;:2100.00,
+        &quot;paid&quot;:1200.00
+    }
+}
+</pre>
+<h4 class="mume-header" id="&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x8BF4;&#x660E;-12">返回参数说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">最后更新时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">错误代码</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">数据的总条数</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">数据</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">order_id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">订单id</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">class_type</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">班型类别</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">ground_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">场地名称</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">status</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">订单状态</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">price</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">总价</td>
+<td style="text-align:left">正常</td>
+</tr>
+<tr>
+<td style="text-align:left">paid</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">已支付的金额</td>
+<td style="text-align:left">正常</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="&#x9519;&#x8BEF;&#x7801;&#x8BF4;&#x660E;-12">错误码说明</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">错误代码</th>
+<th style="text-align:left">错误英文</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">Success</td>
+<td style="text-align:left">数据请求成功</td>
+</tr>
+</tbody>
+</table>
+<p>更多错误代码请见错误代码对照表</p>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#%E8%B6%85%E9%BE%99api%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3">超龙API接口文档</a>
+<ul>
+<li><a href="#1-%E8%B4%A6%E5%8F%B7%E6%A8%A1%E5%9D%97">1、账号模块</a>
+<ul>
+<li><a href="#11-%E7%99%BB%E5%BD%95">1.1、登录</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E">错误码说明</a></li>
+</ul>
+</li>
+<li><a href="#12-%E6%B3%A8%E5%86%8C">1.2、注册</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-1">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-1">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-1">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-1">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-1">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-1">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-1">错误码说明</a></li>
+</ul>
+</li>
+<li><a href="#13-%E6%89%BE%E5%9B%9E%E5%AF%86%E7%A0%81">1.3、找回密码</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-2">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-2">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-2">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-2">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-2">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-2">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-2">错误码说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97">2、用户模块</a>
+<ul>
+<li><a href="#21-%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF">2.1、获取用户信息</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-3">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-3">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-3">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-3">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-3">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-3">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-3">错误码说明</a></li>
+</ul>
+</li>
+<li><a href="#22-%E6%9B%B4%E6%96%B0%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF">2.2、更新用户信息</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-4">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-4">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-4">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-4">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-4">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-4">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-4">错误码说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-%E7%8F%AD%E5%9E%8B%E6%A8%A1%E5%9D%97">3、班型模块</a>
+<ul>
+<li><a href="#31-%E7%8F%AD%E5%9E%8B%E7%AE%80%E4%BB%8B%E5%88%97%E8%A1%A8">3.1、班型简介列表</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-5">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-5">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-5">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-5">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-5">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-5">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-5">错误码说明</a></li>
+</ul>
+</li>
+<li><a href="#32-%E7%8F%AD%E5%9E%8B%E8%AF%A6%E6%83%85">3.2、班型详情</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-6">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-6">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-6">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-6">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-6">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-6">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-6">错误码说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-%E5%9C%BA%E5%9C%B0%E6%A8%A1%E5%9D%97">4、场地模块</a>
+<ul>
+<li><a href="#41-%E5%9C%BA%E5%9C%B0%E5%88%97%E8%A1%A8">4.1、场地列表</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-7">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-7">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-7">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-7">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-7">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-7">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-7">错误码说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-%E6%95%99%E7%BB%83%E6%A8%A1%E5%9D%97">5、教练模块</a>
+<ul>
+<li><a href="#51-%E6%95%99%E7%BB%83%E5%88%97%E8%A1%A8">5.1、教练列表</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-8">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-8">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-8">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-8">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-8">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-8">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-8">错误码说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#6-%E8%AE%A2%E5%8D%95%E6%A8%A1%E5%9D%97">6、订单模块</a>
+<ul>
+<li><a href="#61-%E5%88%9B%E5%BB%BA%E8%AE%A2%E5%8D%95">6.1、创建订单</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-9">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-9">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-9">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-9">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-9">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-9">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-9">错误码说明</a></li>
+</ul>
+</li>
+<li><a href="#52-%E7%BB%A7%E7%BB%AD%E6%94%AF%E4%BB%98">5.2、继续支付</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-10">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-10">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-10">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-10">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-10">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-10">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-10">错误码说明</a></li>
+</ul>
+</li>
+<li><a href="#53-%E8%8E%B7%E5%8F%96%E8%AE%A2%E5%8D%95">5.3、获取订单</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-11">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-11">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-11">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-11">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-11">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-11">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-11">错误码说明</a></li>
+</ul>
+</li>
+<li><a href="#54-%E5%8F%96%E6%B6%88%E8%AE%A2%E5%8D%95">5.4、取消订单</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-12">方法</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD-12">功能</a></li>
+<li><a href="#url%E5%8F%82%E6%95%B0-12">url参数</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0-12">表单参数</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C-12">返回结果</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-12">返回参数说明</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%AF%B4%E6%98%8E-12">错误码说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())    
+</script>
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>
