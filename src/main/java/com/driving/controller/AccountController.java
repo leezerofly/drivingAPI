@@ -2,6 +2,8 @@ package com.driving.controller;
 
 import com.driving.model.Account;
 import com.driving.service.AccountService;
+import com.driving.status.ListObject;
+import com.driving.status.StatusHouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +23,18 @@ public class AccountController {
      * 查询所有Account
      * @return
      */
-    @RequestMapping(value="/getAllAccount",method= RequestMethod.GET)
-    public List<Account> getAllAccount(){
+    @RequestMapping(value="/getAllAccount")
+    public ListObject getAllAccount(){
         List<Account> accountList = accountService.findAllAccount();
-        return accountList;
+        ListObject list = new ListObject();
+        list.setData(accountList);
+        if (accountList!=null){
+//            list.setCode("200");
+//            list.setStatus("success");
+            list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
+            list.setMessage("成功");
+        }
+        return list;
     }
 
     /**
@@ -45,7 +55,7 @@ public class AccountController {
     public int deleteAccountById(String id){
         System.out.println(id);
         accountService.deleteAccountById(id);
-        return 1;
+        return 200;
     }
 
     @RequestMapping(value="/updateAccount")

@@ -29,7 +29,7 @@
     (1)java里面是写java源码
     (2)resources里面是写映射文件和配置文件，主要是mapper和applicaion.properties
     (3)DrivingapiApplication是程序入口，执行main()
- 3、com.driving.util:封装一些工具类
+ 3、com.driving.status:封装一些工具类
  4、com.driving.model:写实体类
  5、com.driving.dao:写映射在mapper.xml里面的接口
  6、com.driving.service:写业务层函数接口

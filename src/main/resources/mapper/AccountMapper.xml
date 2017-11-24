@@ -31,14 +31,14 @@
   </insert>
 
   <!--根据id删除Account-->
-  <delete id="deleteAccountById" parameterType="int">
+  <delete id="deleteAccountById" parameterType="java.lang.String">
     delete from
     account
     where id
     = #{id}
   </delete>
 
-  <update id="updateAccount" parameterType="com.driving.model.Account">
+  <update id="updateAccount" parameterType="java.lang.String">
     update account
     <set>
       <if test="login_password!=null">login_password=#{login_password}</if>
