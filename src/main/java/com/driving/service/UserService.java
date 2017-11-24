@@ -8,7 +8,7 @@ import java.util.List;
  * Created by wk on 2017-11-23
  * account的service的接口
  */
-public interface AccountService {
+public interface UserService {
 
     /**
      * 查询所有Account

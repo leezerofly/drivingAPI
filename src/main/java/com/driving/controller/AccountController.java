@@ -37,6 +37,20 @@ public class AccountController {
         return list;
     }
 
+    @RequestMapping(value="/login")
+    public ListObject login( String phone, String password) {
+        List<Account> accountList = accountService.login(phone, password);
+        System.out.println(phone);
+        System.out.println(password);
+        ListObject list = new ListObject();
+        list.setData(accountList);
+        if (accountList!=null){
+            list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
+            list.setMessage("提交成功");
+        }
+        return list;
+    }
+
     /**
      * 添加Account
      * @param account

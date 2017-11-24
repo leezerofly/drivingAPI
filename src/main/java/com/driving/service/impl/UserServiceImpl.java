@@ -13,7 +13,7 @@ import java.util.List;
  * account的service层的实现
  */
 @Service
-public class AccountServiceImpl implements AccountService {
+public class UserServiceImpl implements AccountService {
 
     @Autowired
     private AccountDao accountDao;
