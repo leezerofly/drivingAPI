@@ -6,6 +6,14 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="wx_account" property="wx_account" jdbcType="VARCHAR" />
     <result column="login_password" property="login_password" jdbcType="VARCHAR" />
+    <association property="user" column="account_id"
+                 javaType="com.driving.model.User">
+      <id column="ID" property="ID" jdbcType="VARCHAR" />
+      <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="img" property="img" jdbcType="VARCHAR" />
+      <result column="district" property="district" jdbcType="VARCHAR" />
+    </association>
   </resultMap>
   <!--<sql id="Base_Column_List" >
     user_id, user_name, password, phone
@@ -13,13 +21,28 @@
   -->
 
   <!-- 登录-->
-  <select id="login" resultType="com.driving.model.Account">
-    SELECT  id,phone,wx_account,login_password FROM account
-    WHERE phone = #{phone} AND login_password = #{password}
+  <select id="login" resultMap="BaseResultMap">
+    SELECT  a.id,a.phone,wx_account,u.name,u.img,u.district FROM account a LEFT JOIN user u
+    ON a.id = u.account_id
+    WHERE a.phone = #{phone} AND a.login_password = #{password}
   </select>
+
+  <insert id="insertAccount" parameterType="com.driving.model.Account" >
+    <selectKey keyProperty="id" resultType="java.lang.String"
+               order="BEFORE">
+      select UUID()
+    </selectKey>
+    INSERT INTO account (id,phone,login_password) VALUES (#{id},#{phone},#{login_password})
+    /*INSERT INTO user (id,account_id,name) VALUES (#{id},#{account.id},#{name})*/
+  </insert>
 
  <!-- 查询Account-->
   <select id="findAllAccount" resultType="com.driving.model.Account">
+    SELECT  id,phone,wx_account,login_password FROM account
+  </select>
+
+  <!--查询Account的ID-->
+  <select id="findAccount" resultType="com.driving.model.Account">
     SELECT  id,phone,wx_account,login_password FROM account
   </select>
 

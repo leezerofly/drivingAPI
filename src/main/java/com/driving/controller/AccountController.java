@@ -1,6 +1,7 @@
 package com.driving.controller;
 
 import com.driving.model.Account;
+import com.driving.model.User;
 import com.driving.service.AccountService;
 import com.driving.status.ListObject;
 import com.driving.status.StatusHouse;
@@ -37,9 +38,16 @@ public class AccountController {
         return list;
     }
 
+    /**
+     * 登录
+     * @param phone
+     * @param password
+     * @return
+     */
     @RequestMapping(value="/login")
     public ListObject login( String phone, String password) {
         List<Account> accountList = accountService.login(phone, password);
+        System.out.println(accountList);
         System.out.println(phone);
         System.out.println(password);
         ListObject list = new ListObject();
@@ -56,8 +64,8 @@ public class AccountController {
      * @param account
      */
     @RequestMapping("/insertAccount")
-    public void insertAccount(Account account) {
-        accountService.insertAccount(account);
+    public void insertAccount(Account account,User user) {
+        accountService.insertAccount(account,user);
     }
 
     /**

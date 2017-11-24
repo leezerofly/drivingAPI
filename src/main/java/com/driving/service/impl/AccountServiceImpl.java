@@ -1,10 +1,13 @@
 package com.driving.service.impl;
 
 import com.driving.dao.AccountDao;
+import com.driving.dao.UserDao;
 import com.driving.model.Account;
+import com.driving.model.User;
 import com.driving.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountDao accountDao;
+    private UserDao userDao;
 
     /**
      * 查询所有Account
@@ -43,8 +47,13 @@ public class AccountServiceImpl implements AccountService {
      * @param account
      */
     @Override
-    public void insertAccount(Account account) {
-        accountDao.insertAccount(account);
+    @Transactional
+    public void insertAccount(Account account, User user) {
+        int insertAccountCount = accountDao.insertAccount(account);
+        String accountId = account.getId();
+        if(insertAccountCount == 1){
+            int insertUserCount = userDao.insertUser(accountId,user);
+        }
     }
 
     /**

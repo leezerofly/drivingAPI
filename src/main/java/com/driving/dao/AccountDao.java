@@ -29,7 +29,7 @@ public interface AccountDao {
      * 添加account
      * @param account
      */
-    void insertAccount(Account account);
+    int insertAccount(Account account);
 
     /**
      * 删除account

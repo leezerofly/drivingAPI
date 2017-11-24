@@ -1,59 +1,69 @@
 package com.driving.model;
 
 /**
- * created by wk on 2017-11-23
- * account实体类
+ * created by wk on 2017-11-24
+ * user实体类
  */
 public class User {
 
-    private String id;
-    private String phone;
-    private String wx_account;
-    private String login_password;
+    private String ID;
+    private String accountId;
+    private String name;
+    private String img;
+    private String district;
 
     public User() {
         super();
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getID() {
+        return ID;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public void setWx_account(String wx_account) {
-        this.wx_account = wx_account;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setLogin_password(String login_password) {
-        this.login_password = login_password;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
-    public String getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public String getPhone() {
-        return phone;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getWx_account() {
-        return wx_account;
+    public String getImg() {
+        return img;
     }
 
-    public String getLogin_password() {
-        return login_password;
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     @Override
     public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", phone='" + phone + '\'' +
-                ", wx_account='" + wx_account + '\'' +
-                ", login_password='" + login_password + '\'' +
+        return "User{" +
+                "ID='" + ID + '\'' +
+                ", accountId='" + accountId + '\'' +
+                ", name='" + name + '\'' +
+                ", img='" + img + '\'' +
+                ", district='" + district + '\'' +
                 '}';
     }
 }

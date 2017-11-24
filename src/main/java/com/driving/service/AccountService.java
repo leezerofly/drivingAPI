@@ -1,6 +1,7 @@
 package com.driving.service;
 
 import com.driving.model.Account;
+import com.driving.model.User;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface AccountService {
      * 添加Account
      * @param account
      */
-    void insertAccount(Account account);
+    void insertAccount(Account account,User user);
 
     /**
      * 删除Account

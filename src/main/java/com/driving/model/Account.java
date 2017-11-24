@@ -12,6 +12,7 @@ public class Account {
     private String phone;
     private String wx_account;
     private String login_password;
+    private User user;
 
     public Account() {
         super();
@@ -47,6 +48,14 @@ public class Account {
 
     public String getLogin_password() {
         return login_password;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
