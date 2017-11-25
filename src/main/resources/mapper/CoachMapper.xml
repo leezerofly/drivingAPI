@@ -6,7 +6,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="img" property="img" jdbcType="VARCHAR" />
     <result column="intro" property="intro" jdbcType="VARCHAR" />
-    <result column="rank" property="rank" jdbcType="VARCHAR" />
+    <result column="rank" property="rank" jdbcType="INTEGER" />
   </resultMap>
   <!--<sql id="Base_Column_List" >
     coach_id, coach_name, coach_img, coach_intro,coach_rank
