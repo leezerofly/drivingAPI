@@ -10,9 +10,9 @@ import java.util.UUID;
 public class Order {
 
     private byte[] id;
-    private byte[] user_id;
-    private byte[] class_def_id;
-    private byte[] ground_id;
+    private byte[] userID;
+    private byte[] classDefID;
+    private byte[] groundID;
     private int status;
     private float paid;
 
@@ -24,28 +24,28 @@ public class Order {
         this.id = id;
     }
 
-    public byte[] getUser_id() {
-        return user_id;
+    public byte[] getUserID() {
+        return userID;
     }
 
-    public void setUser_id(byte[] user_id) {
-        this.user_id = user_id;
+    public void setUserID(byte[] userID) {
+        this.userID = userID;
     }
 
-    public byte[] getClass_def_id() {
-        return class_def_id;
+    public byte[] getClassDefID() {
+        return classDefID;
     }
 
-    public void setClass_def_id(byte[] class_def_id) {
-        this.class_def_id = class_def_id;
+    public void setClassDefID(byte[] classDefID) {
+        this.classDefID = classDefID;
     }
 
-    public byte[] getGround_id() {
-        return ground_id;
+    public byte[] getGroundID() {
+        return groundID;
     }
 
-    public void setGround_id(byte[] ground_id) {
-        this.ground_id = ground_id;
+    public void setGroundID(byte[] groundID) {
+        this.groundID = groundID;
     }
 
     public int getStatus() {
@@ -68,9 +68,9 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + Arrays.toString(id) +
-                ", user_id=" + Arrays.toString(user_id) +
-                ", class_def_id=" + Arrays.toString(class_def_id) +
-                ", ground_id=" + Arrays.toString(ground_id) +
+                ", userID=" + Arrays.toString(userID) +
+                ", classDefID=" + Arrays.toString(classDefID) +
+                ", groundID=" + Arrays.toString(groundID) +
                 ", status=" + status +
                 ", paid=" + paid +
                 '}';

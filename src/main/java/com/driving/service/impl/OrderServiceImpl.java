@@ -19,12 +19,27 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     /**
-     * 添加 Order
+     * 添加 order
      * @param order
      */
     @Override
     public void createOrder(Order order) {
         orderMapper.createOrder(order);
+    }
+    /**
+     * 查找 order
+     * @param user_id
+     * return
+     */
+    public Order findOrderByUser(String user_id){
+        return orderMapper.findOrderByUser(user_id.getBytes());
+    }
+    /**
+     * 返回 order 列表
+     * return
+     */
+    public List<Order> findAllOrder(){
+        return orderMapper.findAllOrder();
     }
 
 }

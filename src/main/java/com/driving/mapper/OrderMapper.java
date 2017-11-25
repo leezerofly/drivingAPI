@@ -14,9 +14,26 @@ import java.util.List;
 public interface OrderMapper {
 
     /**
-     * 添加 order
+     * 创建 order
      * @param order
      */
     void createOrder(Order order);
+
+    /**
+     * 查找 order
+     * @param user_id
+     */
+    Order findOrderByUser(@Param("user_id") byte[] user_id);
+
+    /**
+     * 返回 order 列表
+     */
+    List<Order> findAllOrder();
+
+    /**
+     * 更新 order
+     * @param order
+     */
+    void updateOrder(Order order);
 
 }

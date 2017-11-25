@@ -3,14 +3,14 @@
 <mapper namespace="com.driving.mapper.OrderMapper" >
     <resultMap id="BaseResultMap" type="com.driving.model.Order" >
         <id column="id" property="id" jdbcType="VARBINARY" />
-        <result column="user_id" property="user_id" jdbcType="VARBINARY" />
-        <result column="class_def_id" property="class_def_id" jdbcType="VARBINARY" />
-        <result column="ground_id" property="ground_id" jdbcType="VARBINARY" />
+        <result column="user_id" property="userID" jdbcType="VARBINARY" />
+        <result column="class_def_id" property="classDefID" jdbcType="VARBINARY" />
+        <result column="ground_id" property="groundID" jdbcType="VARBINARY" />
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="paid" property="paid" jdbcType="REAL" />
     </resultMap>
 
-    <!--创建 Order，自动生成 id-->
+    <!--创建 order，自动生成 id-->
     <insert id="createOrder" parameterType="com.driving.model.Order" >
         <selectKey keyProperty="id" resultType="_byte[]"
                    order="BEFORE">
@@ -20,7 +20,12 @@
         `order`
         (id,user_id,class_def_id,ground_id,status,paid)
         VALUES
-        ( #{id},#{id}, #{id},#{id},#{status},#{paid})
+        ( #{id},#{id}, #{id},#{id},#{status},#{paid});
     </insert>
+
+    <!-- 查询 order-->
+    <select id="findOrderByUser" resultType="com.driving.model.Order">
+        SELECT * FROM order where user_id = #{user_id};
+    </select>
 
 </mapper>

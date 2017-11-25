@@ -16,5 +16,16 @@ public interface OrderService {
      */
     void createOrder(Order order);
 
+    /**
+     * 查找 order
+     * @param user_id
+     */
+    public Order findOrderByUser(String user_id);
+
+    /**
+     * 返回 order 列表
+     * return
+     */
+    public List<Order> findAllOrder();
 
 }
