@@ -7,12 +7,12 @@ import java.util.List;
 
 /**
  * Created by wk on 2017-11-23
- * account的service的接口
+ * account 的 service 的接口
  */
 public interface AccountService {
 
     /**
-     * 查询所有Account
+     * 查询所有 Account
      * @return
      */
     List<Account> findAllAccount();
@@ -26,13 +26,13 @@ public interface AccountService {
     List<Account> login(String phone, String password);
 
     /**
-     * 添加Account
+     * 添加 Account
      * @param account
      *//*
     void insertAccount(Account account,User user);
 
     *//**
-     * 删除Account
+     * 删除 Account
      * @param id
      * @return
      *//*

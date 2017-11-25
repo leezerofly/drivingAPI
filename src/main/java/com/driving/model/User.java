@@ -2,7 +2,7 @@ package com.driving.model;
 
 /**
  * created by wk on 2017-11-24
- * user实体类
+ * user 实体类
  */
 public class User {
 

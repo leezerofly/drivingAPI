@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * created by wk on 2017-11-24
- * usermapper映射，方法对应UserMapper.xml的id名
+ * UserMapper 映射，方法对应 UserMapper.xml 的 id 名
  */
 public interface UserDao {
 

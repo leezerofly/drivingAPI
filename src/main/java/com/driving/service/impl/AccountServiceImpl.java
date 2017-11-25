@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Created by wk on 2017-11-23
- * account的service层的实现
+ * account 的 service 层的实现
  */
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -25,7 +25,7 @@ public class AccountServiceImpl implements AccountService {
     private UserDao userDao;
 
     /**
-     * 查询所有Account
+     * 查询所有 Account
      * @return
      */
     @Override
@@ -45,7 +45,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
    /* *//**
-     * 添加Account
+     * 添加 Account
      * @param account
      *//*
     @Override
@@ -59,7 +59,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     *//**
-     * 删除deleteAccountById
+     * 删除 deleteAccountById
      * @param id
      *//*
     @Override

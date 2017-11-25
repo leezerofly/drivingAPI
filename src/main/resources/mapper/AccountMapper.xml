@@ -22,7 +22,7 @@
 
   <!-- 登录-->
   <select id="login" resultMap="BaseResultMap">
-    SELECT  a.ID,a.phone,wx_account,u.name,u.img,u.district FROM account a LEFT JOIN user u
+    SELECT  a.ID,a.phone,wx_account,u.ID,u.account_id,u.name,u.img,u.district FROM account a LEFT JOIN user u
     ON a.ID = u.account_id
     WHERE a.phone = #{phone} AND a.login_password = #{password}
   </select>

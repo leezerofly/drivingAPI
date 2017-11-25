@@ -4,7 +4,7 @@ import java.util.UUID;
 
 /**
  * created by wk on 2017-11-23
- * account实体类
+ * account 实体类
  */
 public class Account {
 
