@@ -5,6 +5,8 @@ import com.driving.dao.UserDao;
 import com.driving.model.Account;
 import com.driving.model.User;
 import com.driving.service.AccountService;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,24 +44,24 @@ public class AccountServiceImpl implements AccountService {
         return accountDao.login(phone,password);
     }
 
-    /**
+   /* *//**
      * 添加Account
      * @param account
-     */
+     *//*
     @Override
     @Transactional
     public void insertAccount(Account account, User user) {
         int insertAccountCount = accountDao.insertAccount(account);
-        String accountId = account.getId();
+        String accountId = account.getID();
         if(insertAccountCount == 1){
             int insertUserCount = userDao.insertUser(accountId,user);
         }
     }
 
-    /**
+    *//**
      * 删除deleteAccountById
      * @param id
-     */
+     *//*
     @Override
     public void deleteAccountById(String id) {
         accountDao.deleteAccountById(id);
@@ -68,5 +70,5 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void updateUser(Account account) {
         accountDao.updateAccount(account);
-    }
+    }*/
 }

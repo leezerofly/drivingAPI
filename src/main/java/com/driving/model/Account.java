@@ -8,7 +8,7 @@ import java.util.UUID;
  */
 public class Account {
 
-    private String id;
+    private String ID;
     private String phone;
     private String wx_account;
     private String login_password;
@@ -18,8 +18,8 @@ public class Account {
         super();
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public void setPhone(String phone) {
@@ -34,8 +34,8 @@ public class Account {
         this.login_password = login_password;
     }
 
-    public String getId() {
-        return id;
+    public String getID() {
+        return ID;
     }
 
     public String getPhone() {
@@ -61,7 +61,7 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "id=" + id +
+                "ID=" + ID +
                 ", phone='" + phone + '\'' +
                 ", wx_account='" + wx_account + '\'' +
                 ", login_password='" + login_password + '\'' +

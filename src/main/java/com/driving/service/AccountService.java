@@ -28,15 +28,15 @@ public interface AccountService {
     /**
      * 添加Account
      * @param account
-     */
+     *//*
     void insertAccount(Account account,User user);
 
-    /**
+    *//**
      * 删除Account
      * @param id
      * @return
-     */
+     *//*
     void deleteAccountById(String id);
 
-    void updateUser(Account account);
+    void updateUser(Account account);*/
 }

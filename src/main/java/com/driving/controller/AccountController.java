@@ -62,28 +62,28 @@ public class AccountController {
     /**
      * 添加Account
      * @param account
-     */
+     *//*
     @RequestMapping("/insertAccount")
     public void insertAccount(Account account,User user) {
         accountService.insertAccount(account,user);
-    }
+    }*/
 
     /**
      * 根据id删除Account
      * @param id
      * @return
-     */
+     *//*
     @RequestMapping(value = "/deleteAccountById")
     public int deleteAccountById(String id){
         System.out.println(id);
         accountService.deleteAccountById(id);
         return 200;
-    }
+    }*/
 
-    @RequestMapping(value="/updateAccount")
+    /*@RequestMapping(value="/updateAccount")
     @ResponseBody
     public boolean updateUser(@RequestBody  Account account) {
         accountService.updateUser(account);
         return true;
-    }
+    }*/
 }
