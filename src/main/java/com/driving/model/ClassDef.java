@@ -9,7 +9,7 @@ public class ClassDef {
     private byte[] type_id;
     private String service_list;
     private String cost_list;
-    private String price;
+    private Float price;
 
     public byte[] getId() {
         return id;
@@ -51,11 +51,11 @@ public class ClassDef {
         this.cost_list = cost_list;
     }
 
-    public String getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
