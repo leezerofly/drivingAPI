@@ -1,7 +1,8 @@
 package com.driving.controller;
 
+import com.driving.mapper.CoachMapper;
 import com.driving.model.Coach;
-import com.driving.service.CoachService;
+//import com.driving.mapper.CoachService;
 import com.driving.status.ListObject;
 import com.driving.status.StatusHouse;
 import org.apache.ibatis.annotations.ResultMap;
@@ -20,7 +21,7 @@ import java.util.List;
 public class CoachController {
 
     @Autowired
-    private CoachService coachService;
+    private CoachMapper coachMapper;
 
     /**
      * 查询所有 Coach
@@ -28,7 +29,7 @@ public class CoachController {
      */
     @RequestMapping(value="/list",method= RequestMethod.GET)
     public ListObject getAllCoach(){
-        List<Coach> coachList = coachService.findAllCoach();
+        List<Coach> coachList = coachMapper.findAllCoach();
         ListObject list = new ListObject();
         list.setData(coachList);
         if (coachList!=null){
