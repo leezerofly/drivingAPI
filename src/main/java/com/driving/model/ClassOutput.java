@@ -4,12 +4,21 @@ package com.driving.model;
  * Created by cuiyingGao on 2017/11/25 0025.
  * classname 实体类
  */
-public class ClassName {
+public class ClassOutput {
 
     private String id;
     private String name;
     private String intro;
-    public ClassName(){super();}
+    private Float price;
+    public ClassOutput(){super();}
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
 
     public void setIntro(String intro) {
         this.intro = intro;
@@ -19,9 +28,6 @@ public class ClassName {
         this.name = name;
     }
 
-    public void setID(String ID) {
-        this.id = id;
-    }
 
     public String getIntro() {
         return intro;
@@ -31,8 +37,13 @@ public class ClassName {
         return name;
     }
 
-    public String getID() {
+
+    public String getId() {
         return id;
+    }
+
+    public Float getPrice() {
+        return price;
     }
 
     @Override
@@ -41,7 +52,7 @@ public class ClassName {
         return "ClassName{" +
                 "ID=" + id +
                 ", name='" + name + '\'' +
-                ", intro='" + intro + '\'' +
+                ", price='" + price + '\'' +
                 '}';
     }
 }

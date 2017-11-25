@@ -6,6 +6,7 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="wx_account" property="wx_account" jdbcType="VARCHAR" />
     <result column="login_password" property="login_password" jdbcType="VARCHAR" />
+
     <association property="user" column="account_id"
                  javaType="com.driving.model.User">
       <id column="ID" property="ID" jdbcType="VARCHAR" />
