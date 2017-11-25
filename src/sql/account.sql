@@ -10,10 +10,10 @@ CREATE TABLE account (
 
 
 CREATE TABLE `order` (
-  `id` binary(16) NOT NULL,
-  `user_id` binary(16) DEFAULT NULL,
-  `class_def_id` binary(16) DEFAULT NULL,
-  `ground_id` binary(16) DEFAULT NULL,
+  `id` varbinary(16) NOT NULL,
+  `user_id` varbinary(16) DEFAULT NULL,
+  `class_def_id` varbinary(16) DEFAULT NULL,
+  `ground_id` varbinary(16) DEFAULT NULL,
   `status` int(10) DEFAULT NULL,
   `paid` float(10,2) DEFAULT NULL,
   PRIMARY KEY (id)
