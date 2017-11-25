@@ -5,6 +5,9 @@ import com.driving.model.Account;
 import com.driving.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import java.util.List;
 
 /**
@@ -17,6 +20,8 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountMapper accountMapper;
     //private UserDao userDao;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
      * 查询所有 Account
@@ -29,12 +34,25 @@ public class AccountServiceImpl implements AccountService {
 
     /**
      * 登录
+     * 如果缓存存在，从缓存中获取 account 信息
+     * 如果缓存不存在，从DB中获取 account 信息，然后插入缓存
      * @param phone
      * @param password
      * @return
      */
     @Override
     public List<Account> login(String phone, String password) {
+      /*  // 从缓存中获取信息
+        String keyPhone = "phone" + phone;
+        String keyPassword = "password" + password;
+        ValueOperations<String, Account> operations = redisTemplate.opsForValue();
+
+        // 缓存存在
+        boolean hasKeyPhone = redisTemplate.hasKey(keyPhone);
+        boolean hasKeyPassword = redisTemplate.hasKey(keyPassword);
+        if (hasKeyPhone && hasKeyPassword){
+
+        }*/
         return accountMapper.login(phone,password);
     }
 
