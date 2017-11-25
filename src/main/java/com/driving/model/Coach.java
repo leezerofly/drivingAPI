@@ -1,14 +1,16 @@
 package com.driving.model;
 
 /**
- * Created by Administrator on 2017/11/24 0024.
+ * Created by Cuiying Gao on 2017/11/24 0024.
+ * Coach 实体类
  */
+
 public class Coach {
     private String id;
     private String name;
     private String img;
     private String intro;
-    private String rank;
+    private Integer rank;
 
     public Coach(){super();}
 
@@ -28,7 +30,7 @@ public class Coach {
         return intro;
     }
 
-    public String getRank() {
+    public Integer getRank() {
         return rank;
     }
 
@@ -48,7 +50,7 @@ public class Coach {
         this.intro = intro;
     }
 
-    public void setRank(String rank) {
+    public void setRank(Integer rank) {
         this.rank = rank;
     }
     @Override

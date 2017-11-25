@@ -5,13 +5,13 @@ import com.driving.model.Coach;
 import java.util.List;
 
 /**
- * Created by wk on 2017-11-23
- * account的service的接口
+ * Created by Cuiying Gao on 2017-11-24
+ * coach 的 service 的接口
  */
 public interface CoachService {
 
     /**
-     * 查询所有Account
+     * 查询所有 Coach
      * @return
      */
     List<Coach> findAllCoach();
