@@ -8,38 +8,44 @@
 5、tomcat 地址：http://pan.baidu.com/s/1mi7mDKW    密码：1cyv
  ```
  ## 步骤
- ```
+
  1、IDEA下载安装破解（不破解可用30天），可用导jar包破解；
- 地址：http://idea.lanyus.com/
+ 参考地址：http://idea.lanyus.com/
 
  2、maven安装，安装好maven后配置本地仓库；
- 地址：http://blog.csdn.net/qq_32588349/article/details/51461182
+ 参考地址：http://blog.csdn.net/qq_32588349/article/details/51461182
 
  3、IDEA配置jdk和tomcat
- 地址：http://blog.csdn.net/u010297791/article/details/68950967
- 
+ 参考地址：http://blog.csdn.net/u010297791/article/details/68950967
+
  4、导入项目，执行main函数
- ```
+
+ 5、IDEA查看数据库：
+ 参考地址：http://blog.csdn.net/qq_27093465/article/details/52872582
 
  ## 重要目录介绍
- ```
  1、pox.xml:
     跟目录下的pom.xml是maven项目配置文件的地方，需要什么jar，在这里写上配置文件就能直接下载到本地仓库
- 2、src
-    (1)java里面是写java源码
-    (2)resources里面是写映射文件和配置文件，主要是mapper和applicaion.properties
-    (3)DrivingapiApplication是程序入口，执行main()
+ 2、src：
+ - java里面是写java源码
+ - resources里面是写映射文件和配置文件，主要是mapper和applicaion.properties
+ - DrivingapiApplication是程序入口，执行main()
+
  3、com.driving.status:封装一些工具类
  4、com.driving.model:写实体类
  5、com.driving.dao:写映射在mapper.xml里面的接口
  6、com.driving.service:写业务层函数接口
  7、com.driving.service.impl:写业务层接口的实现
  8、com.driving.controller:写具体实现方法（接口路径）
- ```
+
 
  ## 框架使用（以查询account表所有数据为例子）
+ 
+ **1、在com.driving.model包下建立实体类**
+注意事项：
+ （1）创建文件时，首字母一定要大写；
+ （2）get、set、toString方法可以使用编辑器的自动生成快捷方式（Alt+Insert），再选择对应的生成方式（Getter and Setter和toString()），Alt+a全选，OK即可。
  ```
- 1、在com.driving.model包下建立实体类
  Account.java
 
  /**
@@ -69,8 +75,14 @@ public class Account {
                 '}';
     }
 }
+```
 
 2、com.driving.dao里写接口
+注意事项：
+ （1）注意修改import的实体。
+ （2）命名需要符合规范
+ （示例：*findAllUserByAccount：表示通过account查找所有user，如果有多个查询条件则可直接写成findAllUser，如果只查找一条数据则写成findUser*）
+```
 AccountDao.java
 
 /**
@@ -86,8 +98,16 @@ public interface AccountDao {
     List<Account> findAllAccount();
 
 }
+```
 
-3、AccountMapper.xml里面写数据库映射文件
+3、添加新的数据库映射文件
+注意事项：
+ （1）新建一个文件，命名AccountMapper.xml，复制其他的Mapper文件里面的代码进去修改即可。
+ （2）先修改mapper的namespace改成之前新建的Dao文件的名字。
+ （3）在修改resultMaptype和其中的字段。
+ （4）书写操作数据表的操作。
+```
+AccountMapper.xml：
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
@@ -104,8 +124,10 @@ public interface AccountDao {
     SELECT  id,phone,wx_account,login_password FROM account
   </select>
 </mapper>
+```
 
 4、com.driving.service写业务接口
+```
 AccountService.java
 
 /**
@@ -121,8 +143,10 @@ public interface AccountService {
     List<Account> findAllAccount();
 
 }
+```
 
 5、com.driving.service.impl里写业务接口实现函数
+```
 AccountServiceImpl.java
 
 /**
@@ -145,8 +169,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
 }
+```
 
 6、com.driving.controller写接口api实现（映射路径）
+```
 AccountController.java
 
 /**
@@ -170,7 +196,6 @@ public class AccountController {
     }
 
 }
-
-7、运行main()，接口地址(对应application.properties和AccountController.java文件)：localhost:8081/drivingAPI/getAllAccount
-
- ```
+```
+7、运行main()，接口地址(对应application.properties和AccountController.java文件)：
+> localhost:8081/drivingAPI/getAllAccount

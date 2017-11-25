@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.driving.dao.OrderDao" >
+    <resultMap id="BaseResultMap" type="com.driving.model.Order" >
+        <id column="id" property="id" jdbcType="BINARY" />
+        <result column="user_id" property="user_id" jdbcType="BINARY" />
+        <result column="class_def_id" property="class_def_id" jdbcType="BINARY" />
+        <result column="ground_id" property="ground_id" jdbcType="BINARY" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="paid" property="paid" jdbcType="DECIMAL" />
+    </resultMap>
+
+    <!--创建 Order，自动生成 id-->
+    <insert id="createOrder" parameterType="com.driving.model.Order" >
+        <selectKey keyProperty="id" resultType="java.lang.String"
+                   order="BEFORE">
+            select UUID()
+        </selectKey>
+        INSERT INTO
+        `order`
+        (id,user_id,class_def_id,ground_id,status,paid)
+        VALUES
+        ( #{id},#{id}, #{id},#{id},#{status},#{paid})
+    </insert>
+
+</mapper>

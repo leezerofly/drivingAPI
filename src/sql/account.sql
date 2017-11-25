@@ -7,3 +7,14 @@ CREATE TABLE account (
   login_password varchar(64) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+CREATE TABLE `order` (
+  `id` binary(16) NOT NULL,
+  `user_id` binary(16) DEFAULT NULL,
+  `class_def_id` binary(16) DEFAULT NULL,
+  `ground_id` binary(16) DEFAULT NULL,
+  `status` int(10) DEFAULT NULL,
+  `paid` float(10,2) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
