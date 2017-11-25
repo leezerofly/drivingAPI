@@ -1,6 +1,7 @@
 package com.driving.mapper;
 
 import com.driving.model.Account;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * AccountMapper 映射，方法对应 AccuntMapper.xml 的 id 名
  */
 @Component
+//@Mapper
 public interface AccountMapper {
 
     /**

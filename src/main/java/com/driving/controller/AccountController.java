@@ -1,5 +1,6 @@
 package com.driving.controller;
 
+import com.driving.mapper.AccountMapper;
 import com.driving.model.Account;
 import com.driving.model.User;
 import com.driving.service.AccountService;
@@ -17,8 +18,10 @@ import java.util.List;
 @RestController
 public class AccountController {
 
+   /* @Autowired
+    private AccountService accountService;*/
     @Autowired
-    private AccountService accountService;
+    private AccountMapper accountMapper;
 
     /**
      * 查询所有Account
@@ -46,7 +49,7 @@ public class AccountController {
      */
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public ListObject login( String phone, String password) {
-        Account account = accountService.login(phone, password);
+        Account account = accountMapper.login(phone, password);
         ListObject list = new ListObject();
         list.setData(account);
         if (account!=null){
