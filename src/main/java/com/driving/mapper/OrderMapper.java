@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * created by wk on 2017-11-23
- * mapper 映射，方法对应 mapper.xml 的 id 名
+ * OrderMapper 映射，方法对应 OrderMapper.xml 的 id 名
  */
 @Component
 public interface OrderMapper {

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by wk on 2017-11-23
@@ -31,9 +32,7 @@ public class OrderServiceImpl implements OrderService {
      * @param user_id
      * return
      */
-    public Order findOrderByUser(String user_id){
-        return orderMapper.findOrderByUser(user_id.getBytes());
-    }
+
     /**
      * 返回 order 列表
      * return
