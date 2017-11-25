@@ -64,15 +64,4 @@ public class Order {
         this.paid = paid;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + Arrays.toString(id) +
-                ", userID=" + Arrays.toString(userID) +
-                ", classDefID=" + Arrays.toString(classDefID) +
-                ", groundID=" + Arrays.toString(groundID) +
-                ", status=" + status +
-                ", paid=" + paid +
-                '}';
-    }
 }
