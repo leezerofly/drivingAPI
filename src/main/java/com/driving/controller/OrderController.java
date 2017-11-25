@@ -1,7 +1,7 @@
 package com.driving.controller;
 
+import com.driving.mapper.OrderMapper;
 import com.driving.model.Order;
-import com.driving.service.OrderService;
 import com.driving.status.ListObject;
 import com.driving.status.StatusHouse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,9 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController {
 
+
     @Autowired
-    private OrderService orderService;
+    private OrderMapper orderMapper;
 
     /**
      * 创建订单
@@ -29,7 +30,7 @@ public class OrderController {
         Order order = new Order();
         order.setPaid(pay);
         order.setStatus(1);
-        orderService.createOrder(order);
+        orderMapper.createOrder(order);
         ListObject list = new ListObject();
         list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
         list.setMessage("提交成功");
@@ -43,7 +44,7 @@ public class OrderController {
     public ListObject payOrder(float pay) {
 //        List<Order> orderList = orderService.findAllOrder();
 //        System.out.println(orderList);
-        Order order = orderService.findOrderByUser("MjNlYzVkMWYtZDFkNS0xMQ==");
+        Order order = orderMapper.findOrderByUser("MjNlYzVkMWYtZDFkNS0xMQ==".getBytes());
         ListObject list = new ListObject();
         list.setData(order);
         list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
