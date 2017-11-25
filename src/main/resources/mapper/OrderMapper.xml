@@ -28,7 +28,7 @@
         SELECT * FROM `order` where user_id = #{user_id};
     </select>
     <!-- 查询 order 列表-->
-    <select id="findAllOrder" resultMap="orderResultMap">
+    <select id="findAllOrder" resultMap="BaseResultMap">
         SELECT * FROM `order`;
     </select>
 
