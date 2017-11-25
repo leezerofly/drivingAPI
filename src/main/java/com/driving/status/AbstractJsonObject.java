@@ -34,12 +34,12 @@ public class AbstractJsonObject {
 		this.message = message;
 	}
 
-	public void setStatusObjectTwo(StatusObject statusObject) {
-		this.code = statusObject.getCode();
-		this.status = statusObject.getStatus();
-	}
+//	public void setStatusObjectTwo(StatusObject statusObject) {
+//		this.code = statusObject.getCode();
+//		this.status = statusObject.getStatus();
+//	}
 
-	public void setStatusObjectThree(StatusObject statusObject) {
+	public void setStatusObject(StatusObject statusObject) {
 		this.code = statusObject.getCode();
 		this.status = statusObject.getStatus();
 		this.message = statusObject.getMessage();

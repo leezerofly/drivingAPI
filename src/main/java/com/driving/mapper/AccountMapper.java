@@ -1,4 +1,4 @@
-package com.driving.dao;
+package com.driving.mapper;
 
 import com.driving.model.Account;
 import org.apache.ibatis.annotations.Param;
@@ -10,8 +10,8 @@ import java.util.List;
  * created by wk on 2017-11-23
  * AccountMapper 映射，方法对应 AccuntMapper.xml 的 id 名
  */
-//@Component
-public interface AccountDao {
+@Component
+public interface AccountMapper {
 
     /**
      * 查询所有 account

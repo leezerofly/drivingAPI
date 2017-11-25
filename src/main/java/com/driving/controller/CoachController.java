@@ -32,7 +32,7 @@ public class CoachController {
         ListObject list = new ListObject();
         list.setData(coachList);
         if (coachList!=null){
-            list.setStatusObjectTwo(StatusHouse.COMMON_STATUS_OK);
+            list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
             list.setMessage("获取成功");
         }
         return list;

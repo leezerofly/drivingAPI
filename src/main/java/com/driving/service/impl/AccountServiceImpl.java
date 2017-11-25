@@ -1,16 +1,10 @@
 package com.driving.service.impl;
 
-import com.driving.dao.AccountDao;
-import com.driving.dao.UserDao;
+import com.driving.mapper.AccountMapper;
 import com.driving.model.Account;
-import com.driving.model.User;
 import com.driving.service.AccountService;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**
@@ -21,8 +15,8 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
-    private AccountDao accountDao;
-    private UserDao userDao;
+    private AccountMapper accountMapper;
+    //private UserDao userDao;
 
     /**
      * 查询所有 Account
@@ -30,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public List<Account> findAllAccount() {
-        return accountDao.findAllAccount();
+        return accountMapper.findAllAccount();
     }
 
     /**
@@ -41,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public List<Account> login(String phone, String password) {
-        return accountDao.login(phone,password);
+        return accountMapper.login(phone,password);
     }
 
    /* *//**

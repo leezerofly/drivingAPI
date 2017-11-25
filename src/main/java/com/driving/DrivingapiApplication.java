@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@MapperScan("com.driving.dao")
+@MapperScan("com.driving.mapper")
 public class DrivingapiApplication {
 
 	public static void main(String[] args) {

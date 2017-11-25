@@ -1,6 +1,6 @@
 package com.driving.service.impl;
 
-import com.driving.dao.CoachDao;
+import com.driving.mapper.CoachMapper;
 import com.driving.model.Coach;
 import com.driving.service.CoachService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import java.util.List;
 public class CoachServiceImpl implements CoachService {
 
     @Autowired
-    private CoachDao coachDao;
+    private CoachMapper coachMapper;
 
     @Override
     public List<Coach> findAllCoach() {
-        return coachDao.findAllCoach();
+        return coachMapper.findAllCoach();
     }
 }
