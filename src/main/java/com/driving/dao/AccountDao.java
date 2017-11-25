@@ -2,6 +2,7 @@ package com.driving.dao;
 
 import com.driving.model.Account;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * created by wk on 2017-11-23
  * AccountMapper 映射，方法对应 AccuntMapper.xml 的 id 名
  */
+@Component
 public interface AccountDao {
 
     /**
