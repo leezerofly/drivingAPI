@@ -1,12 +1,12 @@
 package com.driving.model;
 
-import java.util.UUID;
+import java.io.Serializable;
 
 /**
  * created by wk on 2017-11-23
  * account 实体类
  */
-public class Account {
+public class Account implements Serializable {
 
     private String ID;
     private String phone;

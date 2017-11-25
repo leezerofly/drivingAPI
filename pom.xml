@@ -59,6 +59,13 @@
 			<artifactId>pagehelper</artifactId>
 			<version>4.1.0</version>
 		</dependency>
+
+		<!-- Spring Boot Reids 依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
 		<!-- Junit -->
 		<dependency>
 			<groupId>junit</groupId>
