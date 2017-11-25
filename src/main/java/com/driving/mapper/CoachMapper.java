@@ -14,7 +14,7 @@ import java.util.List;
 public interface CoachMapper {
 
     /**
-     * 查询所有Coach
+     * 查询所有 Coach
      * @return
      */
     List<Coach> findAllCoach();
