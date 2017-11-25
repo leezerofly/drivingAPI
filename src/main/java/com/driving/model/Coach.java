@@ -53,6 +53,7 @@ public class Coach {
     public void setRank(Integer rank) {
         this.rank = rank;
     }
+
     @Override
     public String toString() {
         return "Coach{" +

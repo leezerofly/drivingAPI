@@ -32,7 +32,7 @@ public class AccountController {
         if (accountList!=null){
 //            list.setCode("200");
 //            list.setStatus("success");
-            list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
+            list.setStatusObjectTwo(StatusHouse.COMMON_STATUS_OK);
             list.setMessage("成功");
         }
         return list;
@@ -44,7 +44,7 @@ public class AccountController {
      * @param password
      * @return
      */
-    @RequestMapping(value="/login")
+    @RequestMapping(value="/login", method=RequestMethod.POST)
     public ListObject login( String phone, String password) {
         List<Account> accountList = accountService.login(phone, password);
         System.out.println(accountList);
@@ -53,7 +53,7 @@ public class AccountController {
         ListObject list = new ListObject();
         list.setData(accountList);
         if (accountList!=null){
-            list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
+            list.setStatusObjectTwo(StatusHouse.COMMON_STATUS_OK);
             list.setMessage("提交成功");
         }
         return list;

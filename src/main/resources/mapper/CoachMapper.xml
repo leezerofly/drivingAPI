@@ -8,12 +8,8 @@
     <result column="intro" property="intro" jdbcType="VARCHAR" />
     <result column="rank" property="rank" jdbcType="INTEGER" />
   </resultMap>
-  <!--<sql id="Base_Column_List" >
-    coach_id, coach_name, coach_img, coach_intro,coach_rank
-  </sql>
-  -->
 
- <!-- 查询Coach-->
+ <!-- 查询 Coach-->
   <select id="findAllCoach" resultType="com.driving.model.Coach">
     SELECT  id,name,img,intro,rank FROM coach
   </select>
