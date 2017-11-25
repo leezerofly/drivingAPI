@@ -1,6 +1,6 @@
 package com.driving.service.impl;
 
-import com.driving.dao.OrderDao;
+import com.driving.mapper.OrderMapper;
 import com.driving.model.Order;
 import com.driving.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    private OrderDao orderDao;
+    private OrderMapper orderMapper;
 
     /**
      * 添加Order
@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public void createOrder(Order order) {
-        orderDao.createOrder(order);
+        orderMapper.createOrder(order);
     }
 
 }
