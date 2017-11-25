@@ -2,7 +2,7 @@ package com.driving.model;
 
 /**
  * Created by lwy on 2017/11/25/025.
- * ground实体类
+ * ground 实体类
  */
 
 public class Ground {
@@ -55,14 +55,4 @@ public class Ground {
         return latitude;
     }
 
-    @Override
-    public String toString() {
-        return "Ground{" +
-                "id=" + id +
-                ", name='" + name  + '\'' +
-                ", addr='" + addr + '\'' +
-                ", longitude='" + longitude + '\'' +
-                ", latitude='" + latitude + '\'' +
-                '}';
-    }
 }
