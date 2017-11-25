@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**
@@ -41,7 +43,8 @@ public class AccountServiceImpl implements AccountService {
      * @return
      */
     @Override
-    public List<Account> login(String phone, String password) {
+    @Transactional
+    public Account login(String phone, String password) {
       /*  // 从缓存中获取信息
         String keyPhone = "phone" + phone;
         String keyPassword = "password" + password;
@@ -53,7 +56,8 @@ public class AccountServiceImpl implements AccountService {
         if (hasKeyPhone && hasKeyPassword){
 
         }*/
-        return accountMapper.login(phone,password);
+      Account account = accountMapper.login(phone, password);
+        return account;
     }
 
    /* *//**

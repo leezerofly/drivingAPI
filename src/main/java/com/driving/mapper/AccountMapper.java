@@ -25,7 +25,7 @@ public interface AccountMapper {
      * @param password
      * @return
      */
-    List<Account> login(@Param("phone") String phone, @Param("password") String password);
+    Account login(@Param("phone") String phone, @Param("password") String password);
 
    /* *//**
      * 添加 account

@@ -14,6 +14,9 @@
       <result column="img" property="img" jdbcType="VARCHAR" />
       <result column="district" property="district" jdbcType="VARCHAR" />
     </association>
+    <!--<collection property="token" ofType="com.driving.model."
+                column="_id" select="com.example.demo.mapper.TagMapper.getTagsByDiaryId">
+    </collection>-->
   </resultMap>
   <!--<sql id="Base_Column_List" >
     user_id, user_name, password, phone

@@ -23,7 +23,7 @@ public interface AccountService {
      * @param password
      * @return
      */
-    List<Account> login(String phone, String password);
+    Account login(String phone, String password);
 
     /**
      * 添加 Account

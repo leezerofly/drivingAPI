@@ -46,10 +46,10 @@ public class AccountController {
      */
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public ListObject login( String phone, String password) {
-        List<Account> accountList = accountService.login(phone, password);
+        Account account = accountService.login(phone, password);
         ListObject list = new ListObject();
-        list.setData(accountList);
-        if (accountList!=null){
+        list.setData(account);
+        if (account!=null){
             list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
             list.setMessage("提交成功");
         }
