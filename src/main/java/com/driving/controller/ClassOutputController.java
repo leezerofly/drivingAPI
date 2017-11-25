@@ -1,8 +1,7 @@
 package com.driving.controller;
 
 import com.driving.mapper.ClassOutputMapper;
-import com.driving.mapper.CoachMapper;
-import com.driving.model.Coach;
+import com.driving.model.ClassOutput;
 import com.driving.status.ListObject;
 import com.driving.status.StatusHouse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +17,22 @@ import java.util.List;
  * Created by Cuiying Gao on 2017/11/24 0024.
  */
 @RestController
-@RequestMapping("/coach")
+@RequestMapping("/class")
 public class ClassOutputController {
 
     @Autowired
     private ClassOutputMapper classOutputMapper;
 
     /**
-     * 查询所有 Coach
+     * 查询所有 ClassOutput
      * @return
      */
     @RequestMapping(value="/list",method= RequestMethod.GET)
-    public ListObject getAllCoach(){
-        List<Coach> coachList = classOutputMapper.findAllCoach();
+    public ListObject getAllClassOutput(){
+        List<ClassOutput> classOutputList = classOutputMapper.findAllClassOutput();
         ListObject list = new ListObject();
-        list.setData(coachList);
-        if (coachList!=null){
+        list.setData(classOutputList);
+        if (classOutputList!=null){
             list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
             list.setMessage("获取成功");
         }

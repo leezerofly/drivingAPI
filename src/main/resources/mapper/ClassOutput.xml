@@ -4,9 +4,7 @@
   <resultMap id="BaseResultMap" type="com.driving.model.Coach" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="img" property="img" jdbcType="VARCHAR" />
-    <result column="intro" property="intro" jdbcType="VARCHAR" />
-    <result column="rank" property="rank" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="FLOAT" />
   </resultMap>
 
  <!-- 查询 Coach-->

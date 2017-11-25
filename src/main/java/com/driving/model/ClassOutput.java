@@ -2,48 +2,35 @@ package com.driving.model;
 
 /**
  * Created by cuiyingGao on 2017/11/25 0025.
- * classname 实体类
+ * classOutput 实体类
  */
 public class ClassOutput {
 
-    private String id;
+    private byte[] id;
     private String name;
-    private String intro;
     private Float price;
     public ClassOutput(){super();}
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public void setPrice(Float price) {
         this.price = price;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public String getName() {
-        return name;
+    public String getName(ClassName className) {
+        return className.getName();
     }
 
 
-    public String getId() {
-        return id;
+    public byte[] getId(ClassName className) {
+
+        return className.getId();
     }
 
-    public Float getPrice() {
-        return price;
+    public Float getPrice(ClassDef classDef) {
+        return classDef.getPrice();
     }
 
     @Override
