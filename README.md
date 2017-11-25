@@ -25,23 +25,29 @@
 
  ## 重要目录介绍
  1、pox.xml:
-    跟目录下的pom.xml是maven项目配置文件的地方，需要什么jar，在这里写上配置文件就能直接下载到本地仓库
+    跟目录下的pom.xml是maven项目配置文件的地方，需要什么jar，在这里写上配置文件就能直接下载到本地仓库。
  2、src：
  - java里面是写java源码
  - resources里面是写映射文件和配置文件，主要是mapper和applicaion.properties
  - DrivingapiApplication是程序入口，执行main()
 
- 3、com.driving.status:封装一些工具类
- 4、com.driving.model:写实体类
- 5、com.driving.mapper:写映射在mapper.xml里面的接口
- 6、com.driving.service:写业务层函数接口
- 7、com.driving.service.impl:写业务层接口的实现
- 8、com.driving.controller:写具体实现方法（接口路径）
+ 3、com.driving.status:封装一些工具类。
+
+ 4、com.driving.model:写实体类。
+
+ 5、com.driving.mapper:写映射在mapper.xml里面的接口。
+
+ 6、com.driving.service:写业务层函数接口。
+
+ 7、com.driving.service.impl:写业务层接口的实现。
+
+ 8、com.driving.controller:写具体实现方法（接口路径）。
 
 
  ## 框架使用（以查询account表所有数据为例子）
  
  **1、在com.driving.model包下建立实体类**
+
 注意事项：
  （1）创建文件时，首字母一定要大写；
  （2）get、set、toString方法可以使用编辑器的自动生成快捷方式（Alt+Insert），再选择对应的生成方式（Getter and Setter和toString()），Alt+a全选，OK即可。
@@ -78,6 +84,7 @@ public class Account {
 ```
 
 2、com.driving.mapper 里写接口
+
 注意事项：
  （1）注意修改import的实体。
  （2）命名需要符合规范
@@ -103,6 +110,7 @@ public interface AccountMapper {
 ```
 
 3、添加新的数据库映射文件
+
 注意事项：
  （1）新建一个文件，命名AccountMapper.xml，复制其他的Mapper文件里面的代码进去修改即可。
  （2）先修改mapper的namespace改成之前新建的Mapper文件的名字。
