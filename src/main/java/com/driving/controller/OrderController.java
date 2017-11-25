@@ -14,6 +14,7 @@ import java.util.List;
  * order的Controller
  */
 @RestController
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
@@ -23,7 +24,7 @@ public class OrderController {
      * 添加 order
      * @return
      */
-    @RequestMapping(value="/order/create",method=RequestMethod.POST)
+    @RequestMapping(value="/create",method=RequestMethod.POST)
     public ListObject insertOrder(float pay) {
         Order order = new Order();
         order.setPaid(pay);

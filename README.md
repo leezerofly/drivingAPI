@@ -33,7 +33,7 @@
 
  3、com.driving.status:封装一些工具类
  4、com.driving.model:写实体类
- 5、com.driving.dao:写映射在mapper.xml里面的接口
+ 5、com.driving.mapper:写映射在mapper.xml里面的接口
  6、com.driving.service:写业务层函数接口
  7、com.driving.service.impl:写业务层接口的实现
  8、com.driving.controller:写具体实现方法（接口路径）
@@ -54,7 +54,7 @@
  */
 public class Account {
 
-    private String id;
+    private []byte id;
     private String phone;
     private String wx_account;
     private String login_password;
@@ -68,7 +68,7 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "id=" + id +
+                "id=" + Arrays.toString(id) +
                 ", phone='" + phone + '\'' +
                 ", wx_account='" + wx_account + '\'' +
                 ", login_password='" + login_password + '\'' +
@@ -77,19 +77,21 @@ public class Account {
 }
 ```
 
-2、com.driving.dao里写接口
+2、com.driving.mapper 里写接口
 注意事项：
  （1）注意修改import的实体。
  （2）命名需要符合规范
  （示例：*findAllUserByAccount：表示通过account查找所有user，如果有多个查询条件则可直接写成findAllUser，如果只查找一条数据则写成findUser*）
 ```
-AccountDao.java
+AccountMapper.java
 
 /**
  * created by wk on 2017-11-23
  * mapper映射，方法对应mapper.xml的id名
  */
-public interface AccountDao {
+ 
+@Component
+public interface AccountMapper {
 
     /**
      * 查询所有account
@@ -103,7 +105,7 @@ public interface AccountDao {
 3、添加新的数据库映射文件
 注意事项：
  （1）新建一个文件，命名AccountMapper.xml，复制其他的Mapper文件里面的代码进去修改即可。
- （2）先修改mapper的namespace改成之前新建的Dao文件的名字。
+ （2）先修改mapper的namespace改成之前新建的Mapper文件的名字。
  （3）在修改resultMaptype和其中的字段。
  （4）书写操作数据表的操作。
 ```
@@ -111,15 +113,15 @@ AccountMapper.xml：
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.driving.dao.AccountDao" >
+<mapper namespace="com.driving.mapper.AccountMapper" >
   <resultMap id="BaseResultMap" type="com.driving.model.Account" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="VARBINARY" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="wx_account" property="wx_account" jdbcType="VARCHAR" />
     <result column="login_password" property="login_password" jdbcType="VARCHAR" />
   </resultMap>
 
- <!-- 查询Account-->
+ <!-- 查询 Account-->
   <select id="findAllAccount" resultType="com.driving.model.Account">
     SELECT  id,phone,wx_account,login_password FROM account
   </select>
@@ -132,12 +134,12 @@ AccountService.java
 
 /**
  * Created by wk on 2017-11-23
- * account的service的接口
+ * account 的 service 的接口
  */
 public interface AccountService {
 
     /**
-     * 查询所有Account
+     * 查询所有 Account
      * @return
      */
     List<Account> findAllAccount();
@@ -157,15 +159,15 @@ AccountServiceImpl.java
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
-    private AccountDao accountDao;
+    private AccountMapper accountMapper;
 
     /**
-     * 查询所有Account
+     * 查询所有 Account
      * @return
      */
     @Override
     public List<Account> findAllAccount() {
-        return accountDao.findAllAccount();
+        return accountMapper.findAllAccount();
     }
 
 }

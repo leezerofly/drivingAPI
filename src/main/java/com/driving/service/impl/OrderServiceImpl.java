@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Created by wk on 2017-11-23
- * order的service层的实现
+ * order 的 service 层的实现
  */
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -19,7 +19,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     /**
-     * 添加Order
+     * 添加 Order
      * @param order
      */
     @Override

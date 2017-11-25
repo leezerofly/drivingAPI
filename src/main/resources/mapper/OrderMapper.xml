@@ -12,7 +12,7 @@
 
     <!--创建 Order，自动生成 id-->
     <insert id="createOrder" parameterType="com.driving.model.Order" >
-        <selectKey keyProperty="id" resultType="byte[]"
+        <selectKey keyProperty="id" resultType="_byte[]"
                    order="BEFORE">
             select unhex(replace(uuid(),'-',''))
         </selectKey>

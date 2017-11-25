@@ -1,5 +1,6 @@
 package com.driving.model;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -8,42 +9,42 @@ import java.util.UUID;
  */
 public class Order {
 
-    private String id;
-    private String user_id;
-    private String class_def_id;
-    private String ground_id;
+    private byte[] id;
+    private byte[] user_id;
+    private byte[] class_def_id;
+    private byte[] ground_id;
     private int status;
     private float paid;
 
-    public String getId() {
+    public byte[] getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(byte[] id) {
         this.id = id;
     }
 
-    public String getUser_id() {
+    public byte[] getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(byte[] user_id) {
         this.user_id = user_id;
     }
 
-    public String getClass_def_id() {
+    public byte[] getClass_def_id() {
         return class_def_id;
     }
 
-    public void setClass_def_id(String class_def_id) {
+    public void setClass_def_id(byte[] class_def_id) {
         this.class_def_id = class_def_id;
     }
 
-    public String getGround_id() {
+    public byte[] getGround_id() {
         return ground_id;
     }
 
-    public void setGround_id(String ground_id) {
+    public void setGround_id(byte[] ground_id) {
         this.ground_id = ground_id;
     }
 
@@ -66,10 +67,10 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "id='" + id + '\'' +
-                ", user_id='" + user_id + '\'' +
-                ", class_def_id='" + class_def_id + '\'' +
-                ", ground_id='" + ground_id + '\'' +
+                "id=" + Arrays.toString(id) +
+                ", user_id=" + Arrays.toString(user_id) +
+                ", class_def_id=" + Arrays.toString(class_def_id) +
+                ", ground_id=" + Arrays.toString(ground_id) +
                 ", status=" + status +
                 ", paid=" + paid +
                 '}';
