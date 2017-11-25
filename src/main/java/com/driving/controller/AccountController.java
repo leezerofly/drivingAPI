@@ -17,10 +17,10 @@ import java.util.List;
 @RestController
 public class AccountController {
 
-   /* @Autowired
+    @Autowired
     private AccountService accountService;
 
-    *//**
+    /**
      * 查询所有Account
      * @return
      *//*
@@ -38,18 +38,15 @@ public class AccountController {
         return list;
     }
 
-    *//**
+    /**
      * 登录
      * @param phone
      * @param password
      * @return
-     *//*
+     */
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public ListObject login( String phone, String password) {
         List<Account> accountList = accountService.login(phone, password);
-        System.out.println(accountList);
-        System.out.println(phone);
-        System.out.println(password);
         ListObject list = new ListObject();
         list.setData(accountList);
         if (accountList!=null){
@@ -59,7 +56,7 @@ public class AccountController {
         return list;
     }
 
-    *//**
+    /**
      * 添加Account
      * @param account
      *//**//*
@@ -72,15 +69,15 @@ public class AccountController {
      * 根据id删除Account
      * @param id
      * @return
-     *//**//*
+     *//*
     @RequestMapping(value = "/deleteAccountById")
     public int deleteAccountById(String id){
         System.out.println(id);
         accountService.deleteAccountById(id);
         return 200;
-    }*//*
+    }
 
-    *//*@RequestMapping(value="/updateAccount")
+    /*@RequestMapping(value="/updateAccount")
     @ResponseBody
     public boolean updateUser(@RequestBody  Account account) {
         accountService.updateUser(account);

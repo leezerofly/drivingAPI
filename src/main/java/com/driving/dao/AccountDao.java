@@ -10,7 +10,7 @@ import java.util.List;
  * created by wk on 2017-11-23
  * AccountMapper 映射，方法对应 AccuntMapper.xml 的 id 名
  */
-//@Component
+@Component
 public interface AccountDao {
 
     /**
