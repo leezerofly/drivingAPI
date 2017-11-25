@@ -6,7 +6,7 @@ package com.driving.model;
  */
 public class ClassName {
 
-    private String ID;
+    private String id;
     private String name;
     private String intro;
     public ClassName(){super();}
@@ -20,7 +20,7 @@ public class ClassName {
     }
 
     public void setID(String ID) {
-        this.ID = ID;
+        this.id = id;
     }
 
     public String getIntro() {
@@ -32,14 +32,14 @@ public class ClassName {
     }
 
     public String getID() {
-        return ID;
+        return id;
     }
 
     @Override
     public String toString() {
 
         return "ClassName{" +
-                "ID=" + ID +
+                "ID=" + id +
                 ", name='" + name + '\'' +
                 ", intro='" + intro + '\'' +
                 '}';
