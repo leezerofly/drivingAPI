@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.driving.mapper.OrderMapper" >
-    <resultMap id="BaseResultMap" type="com.driving.model.dbmodel.Order" >
+    <resultMap id="BaseResultMap" type="com.driving.model.Order" >
         <id column="id" property="id" jdbcType="VARBINARY" />
         <result column="user_id" property="userID" jdbcType="VARBINARY" />
         <result column="class_def_id" property="classDefID" jdbcType="VARBINARY" />
@@ -11,7 +11,7 @@
     </resultMap>
 
     <!--创建 order，自动生成 id-->
-    <insert id="createOrder" parameterType="com.driving.model.dbmodel.Order" >
+    <insert id="createOrder" parameterType="com.driving.model.Order" >
         <selectKey keyProperty="id" resultType="_byte[]"
                    order="BEFORE">
             select unhex(replace(uuid(),'-',''))
@@ -27,9 +27,19 @@
     <select id="findOrderByUser" resultMap="BaseResultMap">
         SELECT * FROM `order` where user_id = #{user_id};
     </select>
+
     <!-- 查询 order 列表-->
     <select id="findAllOrder" resultMap="BaseResultMap">
         SELECT * FROM `order`;
     </select>
 
+    <!-- 更新 order-->
+    <update id="updateOrder" parameterType="com.driving.model.Order">
+        update `order`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="paid!=null">`paid`=#{paid},</if>
+            <if test="status!=null">`status`=#{status}</if>
+        </trim>
+        where id = #{id}
+    </update>
 </mapper>

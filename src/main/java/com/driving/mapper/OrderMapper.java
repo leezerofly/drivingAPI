@@ -1,6 +1,6 @@
 package com.driving.mapper;
 
-import com.driving.model.dbmodel.Order;
+import com.driving.model.Order;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ public interface OrderMapper {
      * 查找 order
      * @param user_id
      */
-    Order findOrderByUser(@Param("user_id") byte[] user_id);
+    Order findOrderByUser(@Param("user_id") String user_id);
 
     /**
      * 返回 order 列表
