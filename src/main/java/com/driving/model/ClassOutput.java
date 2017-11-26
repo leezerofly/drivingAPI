@@ -6,40 +6,46 @@ package com.driving.model;
  */
 public class ClassOutput {
 
-    private byte[] id;
-    private String name;
-    private Float price;
+    private byte[] class_id;
+    private String class_name;
+    private Float class_min_price;
+
     public ClassOutput(){super();}
-
-    public void setPrice(Float price) {
-        this.price = price;
+    public byte[] getClass_id() {
+        return class_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClass_id(byte[] class_id) {
+        this.class_id = class_id;
     }
 
-    public String getName(ClassName className) {
-        return className.getName();
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
+    }
+
+    public Float getClass_minprice() {
+        return class_min_price;
+    }
+
+    public void setClass_minprice(Float class_minprice) {
+        this.class_min_price = class_minprice;
     }
 
 
-    public byte[] getId(ClassName className) {
 
-        return className.getId();
-    }
 
-    public Float getPrice(ClassDef classDef) {
-        return classDef.getPrice();
-    }
 
     @Override
     public String toString() {
 
         return "ClassName{" +
-                "ID=" + id +
-                ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
+                "class_id=" + class_id +
+                ",class_name='" + class_name + '\'' +
+                ", class_min_price='" + class_min_price + '\'' +
                 '}';
     }
 }
