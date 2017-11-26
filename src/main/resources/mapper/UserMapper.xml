@@ -13,7 +13,7 @@
   <insert id="insertUser" parameterType="com.driving.model.User" >
     <selectKey keyProperty="id" resultType="_byte[]"
                order="BEFORE">
-      select unhex(replace(uuid(),'-',''))
+      select UUID()
     </selectKey>
     INSERT INTO
     user
@@ -21,4 +21,9 @@
     VALUES
     ( #{id},#{accountId}, #{name})
   </insert>
+
+  <!--获取当前用户信息-->
+  <select id="getUser" resultType="com.driving.model.User">
+    SELECT  id,account_id,name,img,district FROM user WHERE id = #{id}
+  </select>
 </mapper>

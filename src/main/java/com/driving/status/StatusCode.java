@@ -7,5 +7,6 @@ package com.driving.status;
 public class StatusCode {
 
 	public static String CODE_SUCCESS = "200";
+	public static String CODE_ERROR = "404";
 
 }

@@ -8,6 +8,6 @@ public class StatusHouse {
 
 	
 	public static StatusObject COMMON_STATUS_OK = new StatusObject(StatusCode.CODE_SUCCESS, "success");
-
+	public static StatusObject COMMON_STATUS_ERROR = new StatusObject(StatusCode.CODE_ERROR, "error");
 
 }

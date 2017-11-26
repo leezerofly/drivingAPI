@@ -6,7 +6,7 @@ package com.driving.model;
  */
 public class Account{
 
-    private byte[] id;
+    private String id;
     private String phone;
     private String wxAccount;
     private String loginPassword;
@@ -17,11 +17,11 @@ public class Account{
         super();
     }
 
-    public byte[] getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -64,4 +64,5 @@ public class Account{
     public void setToken(Token token) {
         this.token = token;
     }
+
 }

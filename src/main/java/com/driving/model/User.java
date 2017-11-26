@@ -6,8 +6,8 @@ package com.driving.model;
  */
 public class User {
 
-    private byte[] id;
-    private byte[] accountId;
+    private String id;
+    private String accountId;
     private String name;
     private String img;
     private String district;
@@ -16,19 +16,19 @@ public class User {
         super();
     }
 
-    public byte[] getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public byte[] getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(byte[] accountId) {
+    public void setAccountId(String accountId) {
         this.accountId = accountId;
     }
 

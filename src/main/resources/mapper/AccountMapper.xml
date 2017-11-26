@@ -2,22 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.driving.mapper.AccountMapper" >
   <resultMap id="AccountMap" type="com.driving.model.Account" >
-    <id column="id" property="id" jdbcType="VARBINARY" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="wx_account" property="wxAccount" jdbcType="VARCHAR" />
     <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
     <association property="user" column="account_id"
                  javaType="com.driving.model.User">
-      <id column="id" property="id" jdbcType="VARBINARY" />
-      <result column="account_id" property="accountId" jdbcType="VARBINARY" />
+      <id column="id" property="id" jdbcType="VARCHAR" />
+      <result column="account_id" property="accountId" jdbcType="VARCHAR" />
       <result column="name" property="name" jdbcType="VARCHAR" />
       <result column="img" property="img" jdbcType="VARCHAR" />
       <result column="district" property="district" jdbcType="VARCHAR" />
     </association>
     <association property="token" column="account_id"
                  javaType="com.driving.model.Token">
-      <id column="id" property="id" jdbcType="VARBINARY" />
-      <result column="account_id" property="accountId" jdbcType="VARBINARY" />
+      <id column="id" property="id" jdbcType="VARCHAR" />
+      <result column="account_id" property="accountId" jdbcType="VARCHAR" />
       <result column="client_type" property="clientType" jdbcType="INTEGER" />
       <result column="access_token" property="accessToken" jdbcType="VARCHAR" />
       <result column="refresh" property="refresh" jdbcType="DATE" />
@@ -30,9 +30,9 @@
 
   <!--注册, 自动生成 id-->
   <insert id="register" parameterType="com.driving.model.Account" >
-    <selectKey keyProperty="id" resultType="_byte[]"
+    <selectKey keyProperty="id" resultType="java.lang.String"
                order="BEFORE">
-      select unhex(replace(uuid(),'-',''))
+      select uuid()
     </selectKey>
     INSERT INTO
     account
@@ -55,12 +55,8 @@
 
 
 
-
-
   <!-- &lt;!&ndash;查询Account的ID&ndash;&gt;
-   <select id="findAccount" resultType="com.driving.model.Account">
-     SELECT  ID,phone,wx_account,login_password FROM account
-   </select>
+
 
    &lt;!&ndash;添加Account，自动生成id&ndash;&gt;
    <insert id="insertAccount" parameterType="com.driving.model.Account" >

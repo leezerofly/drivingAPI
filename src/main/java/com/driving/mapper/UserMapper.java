@@ -1,6 +1,7 @@
 package com.driving.mapper;
 
 import com.driving.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,4 +12,11 @@ import org.springframework.stereotype.Component;
 public interface UserMapper {
 
     int insertUser(User user);
+
+    /**
+     * 获取当前用户信息
+     * @param id
+     * @return
+     */
+    User getUser(@Param("id")String id);
 }
