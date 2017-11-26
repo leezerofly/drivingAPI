@@ -50,7 +50,7 @@
 <select id="findAllClassDetail" resultType="com.driving.model.ClassDetail">
     SELECT class_def.id as class_id ,class_name.name as class_name, class_type.name as class_type,service_list as service_list,cost_list as cost_list,price as price
     FROM class_def,class_name,class_type
-    WHERE class_def.type_id = class_type.id AND class_name.id = class_def.name_id =#{password}
+    WHERE class_def.type_id = class_type.id AND class_name.id = class_def.name_id AND class_def.name_id = '01'
 </select>
 
 

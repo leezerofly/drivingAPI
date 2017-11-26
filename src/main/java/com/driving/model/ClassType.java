@@ -5,15 +5,15 @@ package com.driving.model;
  */
 public class ClassType {
 
-    private byte[] id;
+    private String id;
     private String name;
     private ClassDef classDef;
 
-    public byte[] getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(String id) {
         this.id = id;
     }
 

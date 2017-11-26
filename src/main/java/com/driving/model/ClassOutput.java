@@ -6,16 +6,16 @@ package com.driving.model;
  */
 public class ClassOutput {
 
-    private byte[] class_id;
+    private String class_id;
     private String class_name;
     private Float class_min_price;
 
     public ClassOutput(){super();}
-    public byte[] getClass_id() {
+    public String getClass_id() {
         return class_id;
     }
 
-    public void setClass_id(byte[] class_id) {
+    public void setClass_id(String class_id) {
         this.class_id = class_id;
     }
 
