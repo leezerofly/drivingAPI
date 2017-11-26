@@ -79,12 +79,6 @@
      = #{id}
    </delete>
 
-   <update id="updateAccount" parameterType="java.lang.String">
-     update account
-     <set>
-       <if test="login_password!=null">login_password=#{login_password}</if>
-     </set>
-     where ID = #{id}
-   </update>-->
+   -->
 
 </mapper>

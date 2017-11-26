@@ -16,6 +16,6 @@ public interface ClassDetailMapper {
      * 查询所有 ClassDetail
      * @return
      */
-    List<ClassDetail> findAllClassDetail(String ClassNameId);
+    List<ClassDetail> findAllClassDetail(@Param("ClassNameId")String ClassNameId);
     ClassDetail getAllClassDetail (@Param("ClassNameId") String ClassNameId);
 }

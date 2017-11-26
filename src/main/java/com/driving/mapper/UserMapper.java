@@ -11,6 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserMapper {
 
+    /**
+     * 插入用户信息
+     * @param user
+     * @return
+     */
     int insertUser(User user);
 
     /**
@@ -19,4 +24,7 @@ public interface UserMapper {
      * @return
      */
     User getUser(@Param("id")String id);
+
+
+    void updateUser(@Param("id")String id,@Param("username")String username,@Param("image")String image,@Param("district")String district);
 }

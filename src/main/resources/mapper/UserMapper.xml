@@ -26,4 +26,15 @@
   <select id="getUser" resultType="com.driving.model.User">
     SELECT  id,account_id,name,img,district FROM user WHERE id = #{id}
   </select>
+
+  <!--更新当前用户-->
+  <update id="updateUser" parameterType="java.lang.String">
+    update "user"
+    <set>
+      <if test="name!=null"> name = #{username}</if>
+      <if test="img!=null"> img = #{image}</if>
+      <if test="district!=null"> district = #{district}</if>
+    </set>
+    where id = #{id}
+  </update>
 </mapper>

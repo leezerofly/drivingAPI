@@ -34,18 +34,4 @@ public interface AccountMapper {
      */
     Account login(@Param("phone") String phone, @Param("password") String password);
 
-   /*
-
-    /**
-     * 删除 account
-     * @param id
-     * @return
-     *//*
-    void deleteAccountById(String id);
-
-    *//**
-     * 修改 account
-     * @param account
-     *//*
-    void updateAccount(Account account);*/
 }

@@ -29,6 +29,7 @@ public class ClassDetailController {
      */
     @RequestMapping(value="/detail",method= RequestMethod.GET)
     public ListObject getAllClassDetail(String ClassNameId){
+        System.out.println(ClassNameId);
         List<ClassDetail> classDetailList = classDetailMapper.findAllClassDetail(ClassNameId);
         ListObject list = new ListObject();
         list.setData(classDetailList);

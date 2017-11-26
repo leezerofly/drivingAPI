@@ -30,7 +30,7 @@ public class AccountController {
     @Autowired
     private UserMapper userMapper;
 
-    @Transactional
+    //@Transactional（去掉注释可以实现事务管理）
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public ListObject register(String phone,String password,String username){
         ListObject list = new ListObject();
@@ -40,14 +40,16 @@ public class AccountController {
         account.setPhone(phone);
         account.setLoginPassword(password);
         accountMapper.register(account);
-        System.out.println(account);
+        //同时向user表和token表插入account_id
+        /*System.out.println(account);
         user.setAccountId(account.getId());
         user.setName(username);
         token.setAccountId(account.getId());
+        userMapper.insertUser(user);
+        */
         String uuid = UUID.randomUUID().toString();
         String accessToken = uuid.replace("-", "");
         token.setAccessToken(accessToken);
-        userMapper.insertUser(user);
         tokenMapper.insertToken(token);
         list.setData(account);
         list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
@@ -61,6 +63,7 @@ public class AccountController {
      * @param password
      * @return
      */
+    @Transactional
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public ListObject login( String phone, String password) {
         ListObject list = new ListObject();
@@ -89,7 +92,7 @@ public class AccountController {
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public ListObject getUser() {
         ListObject list = new ListObject();
-        //获取当前用户的token（代写入）
+        //获取当前用户的token（待写入）
         User user = userMapper.getUser("57840f8b-d29b-11e7-b576-525400933215");
         if(user != null){
             list.setData(user);
@@ -99,6 +102,19 @@ public class AccountController {
             list.setStatusObject(StatusHouse.COMMON_STATUS_ERROR);
             list.setMessage("获取失败！");
         }
+        return list;
+    }
+
+    /**
+     *  更新当前用户信息
+     * @return
+     */
+    @RequestMapping(value = "/user",method = RequestMethod.PUT)
+    public ListObject updateUser(String username,String image,String district) {
+        ListObject list = new ListObject();
+        //获取当前用户的token（待写入）
+        User user = new User();
+        userMapper.updateUser("57840f8b-d29b-11e7-b576-525400933215",username,image,district);
         return list;
     }
 
