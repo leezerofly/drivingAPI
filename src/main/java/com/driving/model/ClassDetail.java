@@ -4,32 +4,34 @@ package com.driving.model;
  * Created by lwy on 2017/11/26/026.
  */
 public class ClassDetail {
-    private byte[] class_id;
-    private ClassName class_name;
-    private ClassType class_type;
+    private String class_id;
+    private String class_name;
+    private String class_type;
     private String service_list;
     private String cost_list;
     private Float price;
 
-    public byte[] getId() {
+    public String getClass_id() {
         return class_id;
     }
 
-    public void setId(byte[] id) {
-        this.class_id = id;
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
     }
 
-    public ClassName getClass_name() {
+    public String getClass_name() {
         return class_name;
     }
 
-    public void setClass_name(ClassName class_name) {
+    public void setClass_name(String class_name) {
         this.class_name = class_name;
     }
 
-    public ClassType getClass_Type() { return class_type; }
+    public String getClass_type() {
+        return class_type;
+    }
 
-    public void setClass_Type(ClassType type_id) {
+    public void setClass_type(String class_type) {
         this.class_type = class_type;
     }
 
@@ -56,4 +58,8 @@ public class ClassDetail {
     public void setPrice(Float price) {
         this.price = price;
     }
+
+
+
 }
+

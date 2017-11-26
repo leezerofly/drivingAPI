@@ -11,23 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by lwy on 2017/11/26/026.
- */
+//import com.driving.mapper.CoachService;
 
+/**
+ * Created by Cuiying Gao on 2017/11/24 0024.
+ */
 @RestController
 @RequestMapping("/class")
 public class ClassDetailController {
+
     @Autowired
     private ClassDetailMapper classDetailMapper;
 
     /**
-     * 查询所有 ClassDetail
+     * 查询所有 ClassOutput
      * @return
      */
     @RequestMapping(value="/detail",method= RequestMethod.GET)
     public ListObject getAllClassDetail(){
-        List<ClassDetail> classDetailList =  classDetailMapper.findAllClassDetail();
+        List<ClassDetail> classDetailList = classDetailMapper.findAllClassDetail();
         ListObject list = new ListObject();
         list.setData(classDetailList);
         if (classDetailList!=null){
@@ -36,4 +38,5 @@ public class ClassDetailController {
         }
         return list;
     }
+
 }
