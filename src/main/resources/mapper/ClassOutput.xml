@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.driving.mapper.CoachMapper" >
-  <resultMap id="BaseResultMap" type="com.driving.model.Coach" >
+<mapper namespace="com.driving.mapper.ClassOutputMapper" >
+  <resultMap id="BaseClassOutputMap" type="com.driving.model.ClassOutput" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="FLOAT" />
   </resultMap>
 
  <!-- 查询 Coach-->
-  <select id="findAllCoach" resultType="com.driving.model.Coach">
-    SELECT  id,name,img,intro,rank FROM coach
+  <select id="findAllClassOutput" resultType="com.driving.model.ClassOutput">
+    SELECT  id,name,img,intro,rank FROM class_name
   </select>
 
 
