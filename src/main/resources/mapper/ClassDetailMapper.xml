@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.driving.mapper.ClassDetailMapper" >
+
+    <resultMap id="ClassNameMap" type="com.driving.model.ClassName" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="intro" property="intro" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="ClassDefMap" type="com.driving.model.ClassDef" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name_id" property="name_id" jdbcType="VARCHAR" />
+        <result column="type_id" property="type_id" jdbcType="VARCHAR" />
+        <result column="service_list" property="service_list" jdbcType="VARCHAR" />
+        <result column="cost_list" property="cost_list" jdbcType="VARCHAR" />
+        <result column="price" property="price" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="ClassTypeMap" type="com.driving.model.ClassType" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--&lt;!&ndash; 查询 ClassDetail&ndash;&gt;-->
+    <select id="findAllClassDetail" resultMap="ClassDetailMap">
+        SELECT class_def.id class_id,class_name.name class_name ,class_type.name class_type,service_list,cost_list,price FROM class_def,class_name,class_type
+        WHERE class_type.id=class_name.id AND class_name.id=class_def. id
+    </select>
+
+
+</mapper>
