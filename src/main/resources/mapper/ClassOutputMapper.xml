@@ -19,11 +19,10 @@
   </resultMap>
 
  <!-- 查询 ClassOutput-->
-  <select id="findAllClassOutput" resultType="com.driving.model.ClassOutput">
-    SELECT id class_id,name class_name,price class_min_price
+    <select id="findAllClassOutput" resultType="com.driving.model.ClassOutput">
+    SELECT class_name.id as class_id,class_name.name as class_name,MIN(price) as class_min_price
     FROM class_name,class_def
     WHERE class_def.name_id=class_name.id
   </select>
-
-
+    
 </mapper>
