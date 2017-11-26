@@ -19,11 +19,12 @@ public interface AccountMapper {
      */
     void register(Account account);
 
+
     /**
      * 查询所有 account
      * @return
      */
-   /* List<Account> findAllAccount();*/
+   List<Account> findAllAccount();
 
     /**
      * 登录
@@ -31,7 +32,7 @@ public interface AccountMapper {
      * @param password
      * @return
      */
-    //Account login(@Param("phone") String phone, @Param("password") String password);
+    Account login(@Param("phone") String phone, @Param("password") String password);
 
    /*
 

@@ -1,6 +1,7 @@
 package com.driving.mapper;
 
 import com.driving.model.Account;
+import com.driving.model.Token;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,6 @@ import java.util.List;
 @Component
 public interface TokenMapper {
 
-    int insertToken(String id);
+    void insertToken(Token token);
 
 }

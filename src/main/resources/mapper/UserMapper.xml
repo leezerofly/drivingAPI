@@ -8,21 +8,17 @@
     <result column="img" property="img" jdbcType="VARCHAR" />
     <result column="district" property="district" jdbcType="VARCHAR" />
   </resultMap>
-  <!--<sql id="Base_Column_List" >
-    user_id, user_name, password, phone
-  </sql>
-  -->
 
-  <!--添加User，自动生成id-->
+  <!--添加 User，自动生成 id-->
   <insert id="insertUser" parameterType="com.driving.model.User" >
-    <selectKey keyProperty="id" resultType="java.lang.String"
+    <selectKey keyProperty="id" resultType="_byte[]"
                order="BEFORE">
-      select UUID()
+      select unhex(replace(uuid(),'-',''))
     </selectKey>
     INSERT INTO
     user
     (id,account_id,name)
     VALUES
-    ( #{id},#{account_id}, #{name})
+    ( #{id},#{accountId}, #{username})
   </insert>
 </mapper>

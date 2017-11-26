@@ -1,7 +1,5 @@
 package com.driving.model;
 
-import java.io.Serializable;
-
 /**
  * created by wk on 2017-11-23
  * account 实体类
@@ -12,7 +10,8 @@ public class Account{
     private String phone;
     private String wxAccount;
     private String loginPassword;
-    //private User user;
+    private User user;
+    private Token token;
 
     public Account() {
         super();
@@ -50,4 +49,19 @@ public class Account{
         this.loginPassword = loginPassword;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Token getToken() {
+        return token;
+    }
+
+    public void setToken(Token token) {
+        this.token = token;
+    }
 }

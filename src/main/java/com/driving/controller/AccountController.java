@@ -1,11 +1,17 @@
 package com.driving.controller;
 
 import com.driving.mapper.AccountMapper;
+import com.driving.mapper.TokenMapper;
+import com.driving.mapper.UserMapper;
 import com.driving.model.Account;
+import com.driving.model.Token;
+import com.driving.model.User;
 import com.driving.status.ListObject;
 import com.driving.status.StatusHouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * created by wk on 2017-11-23
@@ -17,12 +23,35 @@ public class AccountController {
     @Autowired
     private AccountMapper accountMapper;
 
+    @Autowired
+    private TokenMapper tokenMapper;
+
+    @Autowired
+    private UserMapper userMapper;
+
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public ListObject register(Account account){
-        accountMapper.register(account);
+    public ListObject register(String phone,String password,String username){
         ListObject list = new ListObject();
-        list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
-        list.setMessage("注册成功");
+        System.out.println(phone);
+        System.out.println(password);
+        System.out.println(username);
+        Account account = new Account();
+        User user = new User();
+        Token token = new Token();
+        account.setPhone(phone);
+        account.setLoginPassword(password);
+
+        //User user = new User();
+//        System.out.println(user.getName());
+//
+//        user.setAccountId(user.getId());
+//        userMapper.insertUser(user);
+//        Token token = new Token();
+//        token.setAccountId(account.getId());
+//        tokenMapper.insertToken(token);
+//        list.setData(account);
+//        list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
+//        list.setMessage("提交成功");
         return list;
     }
 
@@ -50,17 +79,20 @@ public class AccountController {
      * @param password
      * @return
      */
-    /*@RequestMapping(value="/login", method=RequestMethod.POST)
+    @RequestMapping(value="/login", method=RequestMethod.POST)
     public ListObject login( String phone, String password) {
-        Account account = accountMapper.login(phone, password);
         ListObject list = new ListObject();
+        Account account = accountMapper.login(phone, password);
+        Token token = new Token();
+        token.setAccountId(account.getId());
+        tokenMapper.insertToken(token);
         list.setData(account);
         if (account!=null){
             list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
             list.setMessage("提交成功");
         }
         return list;
-    }*/
+    }
 
     /**
      * 添加Account

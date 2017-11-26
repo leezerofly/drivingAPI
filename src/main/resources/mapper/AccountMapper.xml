@@ -6,18 +6,22 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="wx_account" property="wxAccount" jdbcType="VARCHAR" />
     <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
-
-    <!--<association property="user" column="account_id"
+    <association property="user" column="account_id"
                  javaType="com.driving.model.User">
-      <id column="ID" property="ID" jdbcType="VARCHAR" />
-      <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+      <id column="id" property="id" jdbcType="VARBINARY" />
+      <result column="account_id" property="accountId" jdbcType="VARBINARY" />
       <result column="name" property="name" jdbcType="VARCHAR" />
       <result column="img" property="img" jdbcType="VARCHAR" />
       <result column="district" property="district" jdbcType="VARCHAR" />
-    </association>-->
-    <!--<collection property="token" ofType="com.driving.model."
-                column="_id" select="com.example.demo.mapper.TagMapper.getTagsByDiaryId">
-    </collection>-->
+    </association>
+    <association property="token" column="account_id"
+                 javaType="com.driving.model.Token">
+      <id column="id" property="id" jdbcType="VARBINARY" />
+      <result column="account_id" property="accountId" jdbcType="VARBINARY" />
+      <result column="client_type" property="clientType" jdbcType="INTEGER" />
+      <result column="access_token" property="accessToken" jdbcType="VARBINARY" />
+      <result column="refresh" property="refresh" jdbcType="DATE" />
+    </association>
   </resultMap>
   <!--<sql id="Base_Column_List" >
     user_id, user_name, password, phone
@@ -34,24 +38,26 @@
     account
     (id,phone,wx_account,login_password)
     VALUES
-    (#{id},#{phone},#{wxAccount},#{loginPassword});
+    (#{id},#{phone},#{wxAccount},#{password});
   </insert>
 
+  <!--查询所有 account-->
+  <select id="findAllAccount" resultType="com.driving.model.Account">
+    SELECT  id,phone,wx_account,login_password FROM account
+  </select>
+
   <!-- 登录-->
-  <!--<select id="login" resultMap="BaseResultMap">-->
-    <!--SELECT  a.id,a.phone,wx_account,u.ID,u.account_id,u.name,u.img,u.district FROM account a LEFT JOIN user u-->
-    <!--ON a.id = u.account_id-->
-    <!--WHERE a.phone = #{phone} AND a.login_password = #{password}-->
-  <!--</select>-->
+  <select id="login" resultMap="AccountMap">
+    SELECT  a.id,a.phone,wx_account,u.ID,u.account_id,u.name,u.img,u.district,t.access_token
+    FROM account a LEFT JOIN user u ON a.id = u.account_id LEFT JOIN token t on a.id = t.account_id
+    WHERE a.phone = #{phone} AND a.login_password = #{password}
+  </select>
 
 
 
-  <!--&lt;!&ndash; 查询Account&ndash;&gt;
-   <select id="findAllAccount" resultType="com.driving.model.Account">
-     SELECT  ID,phone,wx_account,login_password FROM account
-   </select>
 
-   &lt;!&ndash;查询Account的ID&ndash;&gt;
+
+  <!-- &lt;!&ndash;查询Account的ID&ndash;&gt;
    <select id="findAccount" resultType="com.driving.model.Account">
      SELECT  ID,phone,wx_account,login_password FROM account
    </select>
