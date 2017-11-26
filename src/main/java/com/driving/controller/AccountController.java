@@ -76,14 +76,14 @@ public class AccountController {
             list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
             list.setMessage("提交成功");
         }else{
-            list.setStatusObject(StatusHouse.COMMOC_STATUS_ERROR);
+            list.setStatusObject(StatusHouse.COMMON_STATUS_ERROR);
             list.setMessage("提交失败");
         }
         return list;
     }
 
     /**
-     *  获取订单
+     *  获取当前用户信息
      * @return
      */
     @RequestMapping(value = "/user",method = RequestMethod.GET)
@@ -91,9 +91,14 @@ public class AccountController {
         ListObject list = new ListObject();
         //获取当前用户的token（代写入）
         User user = userMapper.getUser("57840f8b-d29b-11e7-b576-525400933215");
-        list.setData(user);
-        list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
-        list.setMessage("获取成功！");
+        if(user != null){
+            list.setData(user);
+            list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
+            list.setMessage("获取成功！");
+        }else{
+            list.setStatusObject(StatusHouse.COMMON_STATUS_ERROR);
+            list.setMessage("获取失败！");
+        }
         return list;
     }
 
