@@ -8,8 +8,8 @@ import java.util.Date;
  */
 public class Token {
 
-    private byte[] id;
-    private byte[] accountId;
+    private String id;
+    private String accountId;
     private Integer clientType;
     private String accessToken;
     private Date refreshTime;
@@ -18,19 +18,19 @@ public class Token {
         super();
     }
 
-    public byte[] getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public byte[] getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(byte[] accountId) {
+    public void setAccountId(String accountId) {
         this.accountId = accountId;
     }
 
@@ -57,4 +57,5 @@ public class Token {
     public void setRefreshTime(Date refreshTime) {
         this.refreshTime = refreshTime;
     }
+
 }
