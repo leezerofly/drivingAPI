@@ -1,9 +1,16 @@
-package com.driving.model.jsonmodel;
+package com.driving.model;
+
+import sun.nio.cs.ext.GBK;
+
+import java.util.Arrays;
+import java.util.UUID;
 
 /**
- * Created by Administrator on 2017/11/26.
+ * created by wk on 2017-11-23
+ * Order 实体类
  */
-public class OrderJSON {
+public class Order {
+
     private String id;
     private String userID;
     private String classDefID;
@@ -11,10 +18,9 @@ public class OrderJSON {
     private int status;
     private float paid;
 
-    public OrderJSON() {
+    public Order() {
         super();
     }
-
     public String getId() {
         return id;
     }
