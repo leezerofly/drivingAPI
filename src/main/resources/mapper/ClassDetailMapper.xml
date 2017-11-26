@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.driving.mapper.ClassDetailMapper" >
+
+    <resultMap id="ClassDetail" type="com.driving.model.ClassDetail" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="intro" property="intro" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+
+    <!--&lt;!&ndash; 查询 ClassDetail&ndash;&gt;-->
+    <select id="findAllClassDetail" resultMap="ClassDetail">
+        /*SELECT * from class_def where*/
+       /* SELECT class_def.id class_id,class_name.name class_name ,class_type.name class_type,service_list,cost_list,price FROM class_def,class_name,class_type
+        WHERE class_type.id=class_name.id AND class_name.id=class_def. id*/
+    </select>
+
+
+</mapper>
