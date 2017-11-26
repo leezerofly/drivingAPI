@@ -7,7 +7,7 @@ CREATE TABLE account (
   wx_account varchar(64) DEFAULT NULL,
   login_password varchar(64) DEFAULT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # 创建uer表
 CREATE TABLE user (
@@ -18,7 +18,7 @@ CREATE TABLE user (
   district varchar(64) DEFAULT NULL,
   PRIMARY KEY (id),
   foreign key(account_id) references account(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # 创建token表
 CREATE TABLE token (
@@ -29,7 +29,7 @@ CREATE TABLE token (
   refresh_time DATE DEFAULT NULL,
   PRIMARY KEY (id),
   foreign key(account_id) references account(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # 创建order表
 CREATE TABLE `order` (
@@ -40,7 +40,7 @@ CREATE TABLE `order` (
   `status` int(10) DEFAULT NULL,
   `paid` float(10,2) DEFAULT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # 班型总表 class_def
 create table class_def
@@ -52,7 +52,7 @@ create table class_def
 	service_list varchar(1024) null comment '服务内容',
 	cost_list varchar(1024) null comment '费用明细',
 	price float(10,2) null comment '价格'
-)ENGINE=InnoDB DEFAULT CHARSET=utf8
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # 班型类别表 class_type
 create table class_type
@@ -60,7 +60,7 @@ create table class_type
 	id varchar(16) not null comment '班型类别id'
 		primary key,
 	name varchar(64) null comment '班型类别名称'
-)ENGINE=InnoDB DEFAULT CHARSET=utf8
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #班型名称表
 create table class_name
@@ -69,7 +69,7 @@ create table class_name
     primary key,
   name varchar(255) null comment '班型名称',
   intro varchar(255) null COMMENT '班型简介'
-)ENGINE=InnoDB DEFAULT CHARSET=utf8
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # 教练表 coach
 create table coach
