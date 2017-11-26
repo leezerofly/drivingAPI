@@ -1,6 +1,7 @@
 package com.driving.mapper;
 
 import com.driving.model.ClassDetail;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,5 +16,6 @@ public interface ClassDetailMapper {
      * 查询所有 ClassDetail
      * @return
      */
-    List<ClassDetail> findAllClassDetail();
+    List<ClassDetail> findAllClassDetail(String ClassNameId);
+    ClassDetail getAllClassDetail (@Param("ClassNameId") String ClassNameId);
 }

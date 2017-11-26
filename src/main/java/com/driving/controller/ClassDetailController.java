@@ -28,11 +28,11 @@ public class ClassDetailController {
      * @return
      */
     @RequestMapping(value="/detail",method= RequestMethod.GET)
-    public ListObject getAllClassDetail(){
-        List<ClassDetail> classDetailList = classDetailMapper.findAllClassDetail();
+    public ListObject getAllClassDetail(String ClassNameId){
+        List<ClassDetail> classDetailList = classDetailMapper.findAllClassDetail(ClassNameId);
         ListObject list = new ListObject();
         list.setData(classDetailList);
-        if (classDetailList!=null){
+        if (classDetailList!=null && ClassNameId!=null){
             list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
             list.setMessage("获取成功");
         }
