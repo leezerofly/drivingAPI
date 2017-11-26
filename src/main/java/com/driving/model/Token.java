@@ -11,7 +11,7 @@ public class Token {
     private byte[] id;
     private byte[] accountId;
     private Integer clientType;
-    private byte[] accessToken;
+    private String accessToken;
     private Date refreshTime;
 
     public Token() {
@@ -42,11 +42,11 @@ public class Token {
         this.clientType = clientType;
     }
 
-    public byte[] getAccessToken() {
+    public String getAccessToken() {
         return accessToken;
     }
 
-    public void setAccessToken(byte[] accessToken) {
+    public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
@@ -57,5 +57,4 @@ public class Token {
     public void setRefreshTime(Date refreshTime) {
         this.refreshTime = refreshTime;
     }
-
 }

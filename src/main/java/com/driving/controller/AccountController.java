@@ -9,9 +9,11 @@ import com.driving.model.User;
 import com.driving.status.ListObject;
 import com.driving.status.StatusHouse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * created by wk on 2017-11-23
@@ -29,29 +31,26 @@ public class AccountController {
     @Autowired
     private UserMapper userMapper;
 
+    @Transactional
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public ListObject register(String phone,String password,String username){
         ListObject list = new ListObject();
-        System.out.println(phone);
-        System.out.println(password);
-        System.out.println(username);
         Account account = new Account();
         User user = new User();
         Token token = new Token();
         account.setPhone(phone);
         account.setLoginPassword(password);
-
-        //User user = new User();
-//        System.out.println(user.getName());
-//
-//        user.setAccountId(user.getId());
-//        userMapper.insertUser(user);
-//        Token token = new Token();
-//        token.setAccountId(account.getId());
-//        tokenMapper.insertToken(token);
-//        list.setData(account);
-//        list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
-//        list.setMessage("提交成功");
+        user.setAccountId(account.getId());
+        token.setAccountId(account.getId());
+        String uuid = UUID.randomUUID().toString();
+        String accessToken = uuid.replace("-", "");
+        token.setAccessToken(accessToken);
+        accountMapper.register(account);
+        userMapper.insertUser(user);
+        tokenMapper.insertToken(token);
+        list.setData(account);
+        list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
+        list.setMessage("提交成功");
         return list;
     }
 

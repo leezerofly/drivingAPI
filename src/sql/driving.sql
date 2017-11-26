@@ -41,3 +41,45 @@ CREATE TABLE `order` (
   `paid` float(10,2) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+# 班型总表 class_def
+create table class_def
+(
+	id varbinary(16) not null comment '班型总表id'
+		primary key,
+	name_id varbinary(16) null comment '班型名称id',
+	type_id varbinary(16) null comment '班型类别id',
+	service_list varchar(1024) null comment '服务内容',
+	cost_list varchar(1024) null comment '费用明细',
+	price float(10,2) null comment '价格'
+)
+
+# 班型类别表 class_type
+create table class_type
+(
+	id varbinary(16) not null comment '班型类别id'
+		primary key,
+	name varchar(64) null comment '班型类别名称'
+)
+
+# 教练表 coach
+create table coach
+(
+	id varbinary(16) not null
+		primary key,
+	name varchar(64) null,
+	img varchar(255) null,
+	intro varchar(255) null,
+	rank int(10) null
+)
+
+# 场地表 ground
+create table ground
+(
+	id varbinary(16) not null
+		primary key,
+	name varchar(255) null,
+	addr varchar(255) null,
+	longitude varchar(64) null,
+	latitude varchar(64) null
+)
