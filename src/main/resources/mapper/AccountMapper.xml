@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.driving.mapper.AccountMapper" >
-  <resultMap id="BaseResultMap" type="com.driving.model.Account" >
-    <id column="ID" property="ID" jdbcType="VARCHAR" />
+  <resultMap id="AccountMap" type="com.driving.model.Account" >
+    <id column="id" property="id" jdbcType="VARBINARY" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="wx_account" property="wx_account" jdbcType="VARCHAR" />
-    <result column="login_password" property="login_password" jdbcType="VARCHAR" />
+    <result column="wx_account" property="wxAccount" jdbcType="VARCHAR" />
+    <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
 
-    <association property="user" column="account_id"
+    <!--<association property="user" column="account_id"
                  javaType="com.driving.model.User">
       <id column="ID" property="ID" jdbcType="VARCHAR" />
       <result column="account_id" property="accountId" jdbcType="VARCHAR" />
       <result column="name" property="name" jdbcType="VARCHAR" />
       <result column="img" property="img" jdbcType="VARCHAR" />
       <result column="district" property="district" jdbcType="VARCHAR" />
-    </association>
+    </association>-->
     <!--<collection property="token" ofType="com.driving.model."
                 column="_id" select="com.example.demo.mapper.TagMapper.getTagsByDiaryId">
     </collection>-->
@@ -24,59 +24,65 @@
   </sql>
   -->
 
-  <!-- 登录-->
-  <select id="login" resultMap="BaseResultMap">
-    SELECT  a.ID,a.phone,wx_account,u.ID,u.account_id,u.name,u.img,u.district FROM account a LEFT JOIN user u
-    ON a.ID = u.account_id
-    WHERE a.phone = #{phone} AND a.login_password = #{password}
-  </select>
-
-  <!--<insert id="insertAccount" parameterType="com.driving.model.Account" >
-    <selectKey keyProperty="ID" resultType="java.lang.String"
+  <!--注册, 自动生成 id-->
+  <insert id="register" parameterType="com.driving.model.Account" >
+    <selectKey keyProperty="id" resultType="_byte[]"
                order="BEFORE">
-      select UUID()
-    </selectKey>
-    INSERT INTO account (ID,phone,login_password) VALUES (#{id},#{phone},#{login_password})
-    /*INSERT INTO user (id,account_id,name) VALUES (#{id},#{account.id},#{name})*/
-  </insert>
-
- &lt;!&ndash; 查询Account&ndash;&gt;
-  <select id="findAllAccount" resultType="com.driving.model.Account">
-    SELECT  ID,phone,wx_account,login_password FROM account
-  </select>
-
-  &lt;!&ndash;查询Account的ID&ndash;&gt;
-  <select id="findAccount" resultType="com.driving.model.Account">
-    SELECT  ID,phone,wx_account,login_password FROM account
-  </select>
-
-  &lt;!&ndash;添加Account，自动生成id&ndash;&gt;
-  <insert id="insertAccount" parameterType="com.driving.model.Account" >
-    <selectKey keyProperty="id" resultType="java.lang.String"
-               order="BEFORE">
-      select UUID()
+      select unhex(replace(uuid(),'-',''))
     </selectKey>
     INSERT INTO
     account
-    (ID,phone,wx_account,login_password)
+    (id,phone,wx_account,login_password)
     VALUES
-    ( #{id},#{phone}, #{wx_account},#{login_password})
+    (#{id},#{phone},#{wxAccount},#{loginPassword});
   </insert>
 
-  &lt;!&ndash;根据id删除Account&ndash;&gt;
-  <delete id="deleteAccountById" parameterType="java.lang.String">
-    delete from
-    account
-    where ID
-    = #{id}
-  </delete>
+  <!-- 登录-->
+  <!--<select id="login" resultMap="BaseResultMap">-->
+    <!--SELECT  a.id,a.phone,wx_account,u.ID,u.account_id,u.name,u.img,u.district FROM account a LEFT JOIN user u-->
+    <!--ON a.id = u.account_id-->
+    <!--WHERE a.phone = #{phone} AND a.login_password = #{password}-->
+  <!--</select>-->
 
-  <update id="updateAccount" parameterType="java.lang.String">
-    update account
-    <set>
-      <if test="login_password!=null">login_password=#{login_password}</if>
-    </set>
-    where ID = #{id}
-  </update>-->
+
+
+  <!--&lt;!&ndash; 查询Account&ndash;&gt;
+   <select id="findAllAccount" resultType="com.driving.model.Account">
+     SELECT  ID,phone,wx_account,login_password FROM account
+   </select>
+
+   &lt;!&ndash;查询Account的ID&ndash;&gt;
+   <select id="findAccount" resultType="com.driving.model.Account">
+     SELECT  ID,phone,wx_account,login_password FROM account
+   </select>
+
+   &lt;!&ndash;添加Account，自动生成id&ndash;&gt;
+   <insert id="insertAccount" parameterType="com.driving.model.Account" >
+     <selectKey keyProperty="id" resultType="java.lang.String"
+                order="BEFORE">
+       select UUID()
+     </selectKey>
+     INSERT INTO
+     account
+     (ID,phone,wx_account,login_password)
+     VALUES
+     ( #{id},#{phone}, #{wx_account},#{login_password})
+   </insert>
+
+   &lt;!&ndash;根据id删除Account&ndash;&gt;
+   <delete id="deleteAccountById" parameterType="java.lang.String">
+     delete from
+     account
+     where ID
+     = #{id}
+   </delete>
+
+   <update id="updateAccount" parameterType="java.lang.String">
+     update account
+     <set>
+       <if test="login_password!=null">login_password=#{login_password}</if>
+     </set>
+     where ID = #{id}
+   </update>-->
 
 </mapper>

@@ -2,13 +2,10 @@ package com.driving.controller;
 
 import com.driving.mapper.AccountMapper;
 import com.driving.model.Account;
-import com.driving.model.User;
 import com.driving.status.ListObject;
 import com.driving.status.StatusHouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * created by wk on 2017-11-23
@@ -17,10 +14,17 @@ import java.util.List;
 @RestController
 public class AccountController {
 
-   /* @Autowired
-    private AccountService accountService;*/
     @Autowired
     private AccountMapper accountMapper;
+
+    @RequestMapping(value="/register", method = RequestMethod.POST)
+    public ListObject register(Account account){
+        accountMapper.register(account);
+        ListObject list = new ListObject();
+        list.setStatusObject(StatusHouse.COMMON_STATUS_OK);
+        list.setMessage("注册成功");
+        return list;
+    }
 
     /**
      * 查询所有Account
@@ -46,7 +50,7 @@ public class AccountController {
      * @param password
      * @return
      */
-    @RequestMapping(value="/login", method=RequestMethod.POST)
+    /*@RequestMapping(value="/login", method=RequestMethod.POST)
     public ListObject login( String phone, String password) {
         Account account = accountMapper.login(phone, password);
         ListObject list = new ListObject();
@@ -56,7 +60,7 @@ public class AccountController {
             list.setMessage("提交成功");
         }
         return list;
-    }
+    }*/
 
     /**
      * 添加Account

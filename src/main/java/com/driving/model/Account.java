@@ -2,66 +2,52 @@ package com.driving.model;
 
 import java.io.Serializable;
 
+/**
+ * created by wk on 2017-11-23
+ * account 实体类
+ */
+public class Account{
 
-public class Account implements Serializable {
-
-    private String ID;
+    private byte[] id;
     private String phone;
-    private String wx_account;
-    private String login_password;
-    private User user;
+    private String wxAccount;
+    private String loginPassword;
+    //private User user;
 
     public Account() {
         super();
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public byte[] getId() {
+        return id;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setWx_account(String wx_account) {
-        this.wx_account = wx_account;
-    }
-
-    public void setLogin_password(String login_password) {
-        this.login_password = login_password;
-    }
-
-    public String getID() {
-        return ID;
+    public void setId(byte[] id) {
+        this.id = id;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public String getWx_account() {
-        return wx_account;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getLogin_password() {
-        return login_password;
+    public String getWxAccount() {
+        return wxAccount;
     }
 
-    public User getUser() {
-        return user;
+    public void setWxAccount(String wxAccount) {
+        this.wxAccount = wxAccount;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public String getLoginPassword() {
+        return loginPassword;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "ID=" + ID +
-                ", phone='" + phone + '\'' +
-                ", wx_account='" + wx_account + '\'' +
-                ", login_password='" + login_password + '\'' +
-                '}';
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
     }
+
 }

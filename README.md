@@ -51,6 +51,7 @@
 注意事项：
  （1）创建文件时，首字母一定要大写；
  （2）get、set、toString方法可以使用编辑器的自动生成快捷方式（Alt+Insert），再选择对应的生成方式（Getter and Setter和toString()），Alt+a全选，OK即可。
+ （3）将数据库语句添加到sql文件夹下的driving.sql中
  ```
  Account.java
 

@@ -1,7 +1,6 @@
 package com.driving.mapper;
 
 import com.driving.model.Account;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -12,14 +11,19 @@ import java.util.List;
  * AccountMapper 映射，方法对应 AccuntMapper.xml 的 id 名
  */
 @Component
-//@Mapper
 public interface AccountMapper {
+
+    /**
+     * 注册
+     * @param account
+     */
+    void register(Account account);
 
     /**
      * 查询所有 account
      * @return
      */
-    List<Account> findAllAccount();
+   /* List<Account> findAllAccount();*/
 
     /**
      * 登录
@@ -27,15 +31,11 @@ public interface AccountMapper {
      * @param password
      * @return
      */
-    Account login(@Param("phone") String phone, @Param("password") String password);
+    //Account login(@Param("phone") String phone, @Param("password") String password);
 
-   /* *//**
-     * 添加 account
-     * @param account
-     *//*
-    int insertAccount(Account account);
+   /*
 
-    *//**
+    /**
      * 删除 account
      * @param id
      * @return
