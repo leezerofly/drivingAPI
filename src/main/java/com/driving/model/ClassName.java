@@ -7,7 +7,9 @@ public class ClassName {
 
     private byte[] id;
     private String name;
-    private String into;
+    private String intro;
+    private ClassDef classDef;
+    private ClassType classType;
 
     public byte[] getId() {
         return id;
@@ -25,12 +27,29 @@ public class ClassName {
         this.name = name;
     }
 
-    public String getInto() {
-        return into;
+    public String getIntro() {
+        return intro;
     }
 
-    public void setInto(String into) {
-        this.into = into;
+    public void setIntro(String into) {
+        this.intro = into;
     }
+
+    public ClassDef getClassDef() {
+        return classDef;
+    }
+
+    public void setClassDef(ClassDef classDef) {
+        this.classDef = classDef;
+    }
+
+    public ClassType getClassType() {
+        return classType;
+    }
+
+    public void setClassType(ClassType classType) {
+        this.classType = classType;
+    }
+
 
 }
