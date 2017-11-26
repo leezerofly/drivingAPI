@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.driving.mapper.OrderMapper" >
-    <resultMap id="BaseResultMap" type="com.driving.model.Order" >
+    <resultMap id="BaseResultMap" type="com.driving.model.dbmodel.Order" >
         <id column="id" property="id" jdbcType="VARBINARY" />
         <result column="user_id" property="userID" jdbcType="VARBINARY" />
         <result column="class_def_id" property="classDefID" jdbcType="VARBINARY" />
@@ -11,7 +11,7 @@
     </resultMap>
 
     <!--创建 order，自动生成 id-->
-    <insert id="createOrder" parameterType="com.driving.model.Order" >
+    <insert id="createOrder" parameterType="com.driving.model.dbmodel.Order" >
         <selectKey keyProperty="id" resultType="_byte[]"
                    order="BEFORE">
             select unhex(replace(uuid(),'-',''))

@@ -1,6 +1,6 @@
 package com.driving.mapper;
 
-import com.driving.model.Order;
+import com.driving.model.dbmodel.Order;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 

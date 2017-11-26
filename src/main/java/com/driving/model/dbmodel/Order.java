@@ -1,4 +1,7 @@
-package com.driving.model;
+package com.driving.model.dbmodel;
+
+import com.driving.model.jsonmodel.OrderJSON;
+import sun.nio.cs.ext.GBK;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -15,6 +18,21 @@ public class Order {
     private byte[] groundID;
     private int status;
     private float paid;
+
+    public Order() {
+        super();
+    }
+
+    public OrderJSON toFrom(){
+        OrderJSON json = new OrderJSON();
+        json.setId(new String(id));
+        json.setUserID(new String(userID));
+        json.setClassDefID(new String(classDefID));
+        json.setGroundID(new String(groundID));
+        json.setStatus(status);
+        json.setPaid(paid);
+        return json;
+    }
 
     public byte[] getId() {
         return id;
