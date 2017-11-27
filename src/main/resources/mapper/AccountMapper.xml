@@ -23,10 +23,6 @@
       <result column="refresh" property="refresh" jdbcType="DATE" />
     </association>
   </resultMap>
-  <!--<sql id="Base_Column_List" >
-    user_id, user_name, password, phone
-  </sql>
-  -->
 
   <!--注册, 自动生成 id-->
   <insert id="register" parameterType="com.driving.model.Account" >
@@ -52,33 +48,5 @@
     FROM account a LEFT JOIN user u ON a.id = u.account_id LEFT JOIN token t on a.id = t.account_id
     WHERE a.phone = #{phone} AND a.login_password = #{password}
   </select>
-
-
-
-  <!-- &lt;!&ndash;查询Account的ID&ndash;&gt;
-
-
-   &lt;!&ndash;添加Account，自动生成id&ndash;&gt;
-   <insert id="insertAccount" parameterType="com.driving.model.Account" >
-     <selectKey keyProperty="id" resultType="java.lang.String"
-                order="BEFORE">
-       select UUID()
-     </selectKey>
-     INSERT INTO
-     account
-     (ID,phone,wx_account,login_password)
-     VALUES
-     ( #{id},#{phone}, #{wx_account},#{login_password})
-   </insert>
-
-   &lt;!&ndash;根据id删除Account&ndash;&gt;
-   <delete id="deleteAccountById" parameterType="java.lang.String">
-     delete from
-     account
-     where ID
-     = #{id}
-   </delete>
-
-   -->
 
 </mapper>
