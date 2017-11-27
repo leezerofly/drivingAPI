@@ -31,8 +31,8 @@
   <update id="updateUser" parameterType="java.lang.String">
     update "user"
     <set>
-      <if test="name!=null"> name = #{username}</if>
-      <if test="img!=null"> img = #{image}</if>
+      <if test="username!=null"> name = #{username}</if>
+      <if test="image!=null"> img = #{image}</if>
       <if test="district!=null"> district = #{district}</if>
     </set>
     where id = #{id}
